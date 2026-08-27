@@ -1,0 +1,364 @@
+'use client';
+
+import { Heart, MapPin, Home as HomeIcon, Menu, X } from 'lucide-react';
+import { useState } from 'react';
+
+export default function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: 'Home', href: '#' },
+    { label: 'Search', href: '#' },
+    { label: 'Settings', href: '#' },
+    { label: 'Services', href: '#' },
+    { label: 'Portfolio', href: '#' },
+    { label: 'Blog', href: '#' },
+    { label: 'About Us', href: '#' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+        <div className="w-full px-4 py-3 sm:px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <HomeIcon className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-lg sm:text-xl font-bold text-blue-900">Nestoria</span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex gap-6 xl:gap-8 text-xs sm:text-sm font-medium">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-gray-600 hover:text-purple-600 transition whitespace-nowrap"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Right Side */}
+            <div className="flex gap-2 sm:gap-4 items-center">
+              <button className="text-gray-400 hover:text-gray-600 transition p-1.5">
+                <Heart className="w-5 h-5" />
+              </button>
+              <button className="hidden sm:block px-4 sm:px-6 py-2 bg-blue-900 text-white rounded-full text-xs sm:text-sm font-semibold hover:bg-blue-800 transition">
+                Sign up
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-1.5 text-gray-600 hover:text-gray-900"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <nav className="lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+              <div className="flex flex-col gap-3">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-gray-600 hover:text-purple-600 transition text-sm font-medium py-2"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <button className="w-full sm:hidden mt-2 px-4 py-2.5 bg-blue-900 text-white rounded-full text-sm font-semibold hover:bg-blue-800 transition">
+                  Sign up
+                </button>
+              </div>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-20 w-64 sm:w-96 h-64 sm:h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+          <div className="absolute -bottom-10 left-10 w-64 sm:w-96 h-64 sm:h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <p className="text-xs sm:text-sm mb-4 sm:mb-6 text-indigo-200 font-medium tracking-wide">Home › Search › Own</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
+            Discover Spaces <br />
+            That Feel Like <span className="text-purple-300">Home</span>
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-indigo-100 mb-8 sm:mb-12 max-w-2xl leading-relaxed font-light">
+            Find personalized spaces with unmatched community feel. Explore premium properties curated just for you.
+          </p>
+
+          {/* Search Bar */}
+          <div className="bg-white rounded-2xl sm:rounded-full p-3 sm:p-2 flex flex-col sm:flex-row gap-2 sm:gap-0 w-full sm:max-w-4xl shadow-2xl">
+            <input
+              type="text"
+              placeholder="New Now"
+              className="flex-1 px-4 sm:px-6 py-3 rounded-lg sm:rounded-full outline-none text-gray-700 text-xs sm:text-sm font-medium bg-transparent placeholder-gray-400"
+            />
+            <div className="w-full sm:w-px bg-gray-200 h-px sm:h-auto hidden sm:block"></div>
+            <select className="px-4 sm:px-6 py-3 rounded-lg sm:rounded-full outline-none text-gray-700 text-xs sm:text-sm font-medium bg-transparent border-0 cursor-pointer">
+              <option>Any Type</option>
+              <option>Apartment</option>
+              <option>House</option>
+              <option>Villa</option>
+            </select>
+            <div className="w-full sm:w-px bg-gray-200 h-px sm:h-auto hidden sm:block"></div>
+            <input
+              type="text"
+              placeholder="Budget"
+              className="px-4 sm:px-6 py-3 rounded-lg sm:rounded-full outline-none text-gray-700 text-xs sm:text-sm font-medium bg-transparent placeholder-gray-400"
+            />
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 sm:px-8 py-3 rounded-lg sm:rounded-full font-semibold text-xs sm:text-sm transition shrink-0">
+              Search
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {[
+            { icon: '✓', title: 'Verified Properties', desc: 'All properties are verified' },
+            { icon: '🔒', title: 'Safe & Secure', desc: 'Secure transactions guaranteed' },
+            { icon: '🕐', title: '24/7 Support', desc: 'Round the clock support' },
+            { icon: '💰', title: 'Best Price Guarantee', desc: 'Best market price' }
+          ].map((feature, idx) => (
+            <div key={idx} className="bg-white border border-purple-100 p-6 sm:p-8 rounded-xl sm:rounded-2xl text-center hover:shadow-md transition duration-300">
+              <div className="text-4xl sm:text-5xl mb-4 sm:mb-5 flex justify-center">{feature.icon}</div>
+              <h3 className="font-bold text-gray-900 mb-2 text-xs sm:text-sm">{feature.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why Choose Section */}
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight">
+              WHY CHOOSE <br /> NESTORIA
+            </h2>
+            <p className="text-gray-600 mb-8 sm:mb-10 leading-relaxed text-sm sm:text-base font-light">
+              Use other more-first access. We deliver premium service and transparent dealings with genuine customer feedback. Real homes for real people.
+            </p>
+            <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+              {['Personalized recommendations', 'Verified listings & owners', 'Secure transactions & support', 'Best market prices guaranteed'].map((item, i) => (
+                <div key={i} className="flex gap-3 sm:gap-4 items-start">
+                  <span className="text-purple-600 font-bold text-lg sm:text-xl shrink-0">✓</span>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base pt-1">{item}</span>
+                </div>
+              ))}
+            </div>
+            <button className="mt-8 sm:mt-10 lg:mt-12 px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-900 text-white rounded-full font-semibold text-sm sm:text-base hover:bg-blue-800 transition">
+              Learn More
+            </button>
+          </div>
+          <div className="flex justify-center mt-8 lg:mt-0">
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl w-full max-w-sm">
+              <img
+                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=500&fit=crop"
+                alt="Modern interior"
+                className="w-full h-auto object-cover aspect-square sm:aspect-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties */}
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">Featured Properties</h2>
+            <a href="#" className="text-purple-600 font-semibold hover:text-purple-700 text-xs sm:text-sm whitespace-nowrap">
+              View All Properties →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              { tag: 'PENDING', tagBg: 'bg-purple-600', name: 'Modern Ocean Villa', loc: 'Miami, USA', beds: 4, baths: 3, sqft: '3,500', price: '$4,800' },
+              { tag: 'NEW', tagBg: 'bg-green-500', name: 'Sunset Luxury Apartment', loc: 'Los Angeles, USA', beds: 3, baths: 2, sqft: '2,500', price: '$2,800' },
+              { tag: 'HOT DEAL', tagBg: 'bg-red-500', name: 'Sunny Autumn House', loc: 'San Francisco, USA', beds: 5, baths: 4, sqft: '4,000', price: '$3,500' }
+            ].map((prop, idx) => (
+              <div key={idx} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                <div className="relative h-48 sm:h-56 lg:h-64 bg-gray-300">
+                  <img
+                    src={`https://images.unsplash.com/photo-${['1512917774080-9b274b3cecab', '1502672260266-1c1ef2d93688', '1570129477492-45ac003ce338'][idx]}?w=500&h=400&fit=crop`}
+                    alt={prop.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <span className={`absolute top-3 sm:top-4 left-3 sm:left-4 px-2.5 sm:px-3 py-1 text-white text-xs font-bold rounded-full ${prop.tagBg}`}>
+                    {prop.tag}
+                  </span>
+                  <button className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white p-2 sm:p-2.5 rounded-full hover:bg-gray-100 transition shadow-md">
+                    <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
+                  </button>
+                </div>
+
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{prop.name}</h3>
+                  <div className="flex items-center gap-2 text-gray-600 text-xs sm:text-sm mb-5 sm:mb-6">
+                    <MapPin className="w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0" />
+                    <span className="truncate">{prop.loc}</span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3 sm:gap-4 py-4 sm:py-5 lg:py-6 border-y border-gray-200 mb-4 sm:mb-5 lg:mb-6 text-xs sm:text-sm">
+                    <div className="text-center">
+                      <p className="font-bold text-gray-900">{prop.beds}</p>
+                      <p className="text-gray-600 text-xs">Beds</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="font-bold text-gray-900">{prop.baths}</p>
+                      <p className="text-gray-600 text-xs">Baths</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="font-bold text-gray-900">{prop.sqft}</p>
+                      <p className="text-gray-600 text-xs">Sqft</p>
+                    </div>
+                  </div>
+
+                  <div className="mb-4 sm:mb-5 lg:mb-6">
+                    <span className="text-xl sm:text-2xl font-bold text-gray-900">{prop.price}</span>
+                  </div>
+
+                  <button className="w-full py-2.5 sm:py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition text-xs sm:text-sm">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Steps Section */}
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-12 sm:mb-16 lg:mb-20 text-center">
+            Find Your Dream Home in 3 Easy Steps
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
+            {[
+              { num: 1, title: 'Search & Browse', desc: 'Search for properties matching your criteria' },
+              { num: 2, title: 'Choose Your Property', desc: 'Compare & select your favorite home' },
+              { num: 3, title: 'Move In & Enjoy', desc: 'Complete process and move in' }
+            ].map((step) => (
+              <div key={step.num} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-full mb-6 sm:mb-8 font-bold text-2xl sm:text-3xl lg:text-4xl shadow-lg">
+                  {step.num}
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{step.title}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-light">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-10 sm:mb-12 lg:mb-16 text-center">
+            What Our Clients Say
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            {[
+              { avatar: '👩', name: 'Sarah Johnson', role: 'Happy Customer', text: 'Finding my dream home was incredibly easy with Nestoria. The process was smooth, transparent and hassle-free from start to finish.' },
+              { avatar: '👩‍💼', name: 'Emily Garcia', role: 'Verified Buyer', text: 'Excellent service with outstanding support team. They made the entire buying process transparent, comfortable and stress-free.' }
+            ].map((test, idx) => (
+              <div key={idx} className="bg-gray-50 p-5 sm:p-6 lg:p-8 rounded-lg sm:rounded-xl lg:rounded-2xl border border-gray-100">
+                <p className="text-gray-600 mb-5 sm:mb-6 italic text-xs sm:text-sm leading-relaxed font-light">"{test.text}"</p>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <span className="text-3xl sm:text-4xl">{test.avatar}</span>
+                  <div className="min-w-0">
+                    <p className="font-bold text-gray-900 text-xs sm:text-sm truncate">{test.name}</p>
+                    <p className="text-xs text-gray-600">{test.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
+            Ready To Find Your Dream Home?
+          </h2>
+          <p className="text-xs sm:text-sm lg:text-base text-indigo-100 mb-8 sm:mb-10 lg:mb-12 leading-relaxed font-light px-2">
+            Join thousands of satisfied customers who discovered their perfect space with Nestoria. Your journey starts here.
+          </p>
+          <button className="px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-4 bg-white text-blue-900 rounded-full font-bold text-xs sm:text-sm lg:text-base hover:bg-gray-100 transition">
+            Get Started Now
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
+          <div>
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+              <div className="w-7 sm:w-8 h-7 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
+                <HomeIcon className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
+              </div>
+              <span className="font-bold text-white text-sm sm:text-base">Nestoria</span>
+            </div>
+            <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Company</h4>
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+              <li><a href="#" className="hover:text-white transition font-light">About Us</a></li>
+              <li><a href="#" className="hover:text-white transition font-light">Careers</a></li>
+              <li><a href="#" className="hover:text-white transition font-light">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Services</h4>
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+              <li><a href="#" className="hover:text-white transition font-light">Buy Property</a></li>
+              <li><a href="#" className="hover:text-white transition font-light">Sell Property</a></li>
+              <li><a href="#" className="hover:text-white transition font-light">Rent</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Support</h4>
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+              <li><a href="#" className="hover:text-white transition font-light">Help Center</a></li>
+              <li><a href="#" className="hover:text-white transition font-light">Contact Us</a></li>
+              <li><a href="#" className="hover:text-white transition font-light">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-gray-700 pt-6 sm:pt-8 text-center text-xs sm:text-sm font-light">
+          <p>&copy; 2024 Nestoria. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
