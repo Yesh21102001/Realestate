@@ -1,11 +1,12 @@
 'use client';
 
-import { Heart, MapPin, Home as HomeIcon, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Heart, MapPin } from 'lucide-react';
+import Link from 'next/link';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { ventures } from './data/ventures';
 
 export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const navLinks = [
     { label: 'Home', href: '#' },
     { label: 'Search', href: '#' },
@@ -16,73 +17,11 @@ export default function HomePage() {
     { label: 'About Us', href: '#' }
   ];
 
+  const featuredVentures = ventures.slice(0, 3);
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-        <div className="w-full px-4 py-3 sm:px-6 lg:px-12">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <div className="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <HomeIcon className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-lg sm:text-xl font-bold text-blue-900">Nestoria</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex gap-6 xl:gap-8 text-xs sm:text-sm font-medium">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-gray-600 hover:text-purple-600 transition whitespace-nowrap"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            {/* Right Side */}
-            <div className="flex gap-2 sm:gap-4 items-center">
-              <button className="text-gray-400 hover:text-gray-600 transition p-1.5">
-                <Heart className="w-5 h-5" />
-              </button>
-              <button className="hidden sm:block px-4 sm:px-6 py-2 bg-blue-900 text-white rounded-full text-xs sm:text-sm font-semibold hover:bg-blue-800 transition">
-                Sign up
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-1.5 text-gray-600 hover:text-gray-900"
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <nav className="lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
-              <div className="flex flex-col gap-3">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-gray-600 hover:text-purple-600 transition text-sm font-medium py-2"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-                <button className="w-full sm:hidden mt-2 px-4 py-2.5 bg-blue-900 text-white rounded-full text-sm font-semibold hover:bg-blue-800 transition">
-                  Sign up
-                </button>
-              </div>
-            </nav>
-          )}
-        </div>
-      </header>
+      <Header navLinks={navLinks} />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 overflow-hidden">
@@ -185,21 +124,17 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">Featured Properties</h2>
-            <a href="#" className="text-purple-600 font-semibold hover:text-purple-700 text-xs sm:text-sm whitespace-nowrap">
+            <a href="/ventures" className="text-purple-600 font-semibold hover:text-purple-700 text-xs sm:text-sm whitespace-nowrap">
               View All Properties →
             </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              { tag: 'PENDING', tagBg: 'bg-purple-600', name: 'Modern Ocean Villa', loc: 'Miami, USA', beds: 4, baths: 3, sqft: '3,500', price: '$4,800' },
-              { tag: 'NEW', tagBg: 'bg-green-500', name: 'Sunset Luxury Apartment', loc: 'Los Angeles, USA', beds: 3, baths: 2, sqft: '2,500', price: '$2,800' },
-              { tag: 'HOT DEAL', tagBg: 'bg-red-500', name: 'Sunny Autumn House', loc: 'San Francisco, USA', beds: 5, baths: 4, sqft: '4,000', price: '$3,500' }
-            ].map((prop, idx) => (
-              <div key={idx} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+            {featuredVentures.map((prop) => (
+              <div key={prop.id} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
                 <div className="relative h-48 sm:h-56 lg:h-64 bg-gray-300">
                   <img
-                    src={`https://images.unsplash.com/photo-${['1512917774080-9b274b3cecab', '1502672260266-1c1ef2d93688', '1570129477492-45ac003ce338'][idx]}?w=500&h=400&fit=crop`}
+                    src={prop.image}
                     alt={prop.name}
                     className="w-full h-full object-cover"
                   />
@@ -237,9 +172,9 @@ export default function HomePage() {
                     <span className="text-xl sm:text-2xl font-bold text-gray-900">{prop.price}</span>
                   </div>
 
-                  <button className="w-full py-2.5 sm:py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition text-xs sm:text-sm">
+                  <Link href={`/ventures/${prop.id}`} className="block w-full py-2.5 sm:py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition text-xs sm:text-sm text-center">
                     Learn More
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -318,47 +253,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
-          <div>
-            <div className="flex items-center gap-2 mb-3 sm:mb-4">
-              <div className="w-7 sm:w-8 h-7 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
-                <HomeIcon className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
-              </div>
-              <span className="font-bold text-white text-sm sm:text-base">Nestoria</span>
-            </div>
-            <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Company</h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-              <li><a href="#" className="hover:text-white transition font-light">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition font-light">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition font-light">Blog</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Services</h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-              <li><a href="#" className="hover:text-white transition font-light">Buy Property</a></li>
-              <li><a href="#" className="hover:text-white transition font-light">Sell Property</a></li>
-              <li><a href="#" className="hover:text-white transition font-light">Rent</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Support</h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-              <li><a href="#" className="hover:text-white transition font-light">Help Center</a></li>
-              <li><a href="#" className="hover:text-white transition font-light">Contact Us</a></li>
-              <li><a href="#" className="hover:text-white transition font-light">Privacy Policy</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-gray-700 pt-6 sm:pt-8 text-center text-xs sm:text-sm font-light">
-          <p>&copy; 2024 Nestoria. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
