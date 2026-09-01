@@ -83,35 +83,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Section */}
+      {/* Discover Perfect Match Section */}
       <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
-          <div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight">
-              WHY CHOOSE <br /> NESTORIA
-            </h2>
-            <p className="text-gray-600 mb-8 sm:mb-10 leading-relaxed text-sm sm:text-base font-light">
-              Use other more-first access. We deliver premium service and transparent dealings with genuine customer feedback. Real homes for real people.
-            </p>
-            <div className="space-y-4 sm:space-y-5 lg:space-y-6">
-              {['Personalized recommendations', 'Verified listings & owners', 'Secure transactions & support', 'Best market prices guaranteed'].map((item, i) => (
-                <div key={i} className="flex gap-3 sm:gap-4 items-start">
-                  <span className="text-purple-600 font-bold text-lg sm:text-xl shrink-0">✓</span>
-                  <span className="text-gray-700 font-medium text-sm sm:text-base pt-1">{item}</span>
-                </div>
-              ))}
-            </div>
-            <button className="mt-8 sm:mt-10 lg:mt-12 px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-900 text-white rounded-full font-semibold text-sm sm:text-base hover:bg-blue-800 transition">
-              Learn More
-            </button>
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Discover Your Perfect</h2>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600">Property Match</h3>
           </div>
-          <div className="flex justify-center mt-8 lg:mt-0">
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl w-full max-w-sm">
-              <img
-                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=500&fit=crop"
-                alt="Modern interior"
-                className="w-full h-auto object-cover aspect-square sm:aspect-auto"
-              />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            {/* Featured Image */}
+            <div className="lg:col-span-1">
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 h-56 sm:h-64 lg:h-96 cursor-pointer group">
+                <img
+                  src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop"
+                  alt="Featured Property"
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                />
+              </div>
+            </div>
+
+            {/* Image Grid */}
+            <div className="lg:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
+              <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 h-40 sm:h-48 cursor-pointer group">
+                <img
+                  src="https://images.unsplash.com/photo-1512917774080-9b274b3cecab?w=500&h=400&fit=crop"
+                  alt="Property"
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                />
+              </div>
+
+              <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 h-40 sm:h-48 cursor-pointer group">
+                <img
+                  src="https://images.unsplash.com/photo-1570129477492-45ac003ce338?w=500&h=400&fit=crop"
+                  alt="Property"
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                />
+              </div>
+
+              <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 h-40 sm:h-48 cursor-pointer group">
+                <img
+                  src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=400&fit=crop"
+                  alt="Property"
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                />
+              </div>
+
+              <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 h-40 sm:h-48 cursor-pointer group">
+                <img
+                  src="https://images.unsplash.com/photo-1469022563428-aa34faf8e8a9?w=500&h=400&fit=crop"
+                  alt="Property"
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -180,6 +204,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Why Choose Section */}
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight">
+              WHY CHOOSE <br /> NESTORIA
+            </h2>
+            <p className="text-gray-600 mb-8 sm:mb-10 leading-relaxed text-sm sm:text-base font-light">
+              Use other more-first access. We deliver premium service and transparent dealings with genuine customer feedback. Real homes for real people.
+            </p>
+            <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+              {['Personalized recommendations', 'Verified listings & owners', 'Secure transactions & support', 'Best market prices guaranteed'].map((item, i) => (
+                <div key={i} className="flex gap-3 sm:gap-4 items-start">
+                  <span className="text-purple-600 font-bold text-lg sm:text-xl shrink-0">✓</span>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base pt-1">{item}</span>
+                </div>
+              ))}
+            </div>
+            <button className="mt-8 sm:mt-10 lg:mt-12 px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-900 text-white rounded-full font-semibold text-sm sm:text-base hover:bg-blue-800 transition">
+              Learn More
+            </button>
+          </div>
+          <div className="flex justify-center mt-8 lg:mt-0">
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl w-full max-w-sm">
+              <img
+                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=500&fit=crop"
+                alt="Modern interior"
+                className="w-full h-auto object-cover aspect-square sm:aspect-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Steps Section */}
       <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
         <div className="max-w-6xl mx-auto">
@@ -227,6 +285,53 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-600 text-sm sm:text-base">Find answers to common questions about our services</p>
+          </div>
+
+          <div className="space-y-4 sm:space-y-6">
+            {[
+              {
+                question: 'How do I start searching for properties?',
+                answer: 'Simply use our search bar to filter properties by location, type, and budget. Browse through our listings or contact our team for personalized recommendations.'
+              },
+              {
+                question: 'Are all properties verified?',
+                answer: 'Yes! Every property on Nestoria is thoroughly verified by our team. We check documentation, take photos, and ensure all information is accurate and up-to-date.'
+              },
+              {
+                question: 'What is your refund policy?',
+                answer: 'We offer a satisfaction guarantee. If you\'re not satisfied with our service within 30 days, we provide a full refund. No questions asked.'
+              },
+              {
+                question: 'How quickly can I schedule a property tour?',
+                answer: 'Most properties can be scheduled within 24-48 hours. For urgent inquiries, our team can arrange same-day tours. Use our "Schedule Tour" button or contact us directly.'
+              },
+              {
+                question: 'Do you provide investment consultation?',
+                answer: 'Yes! Our investment specialists can help you analyze properties and create investment strategies. Book a consultation through our Contact page.'
+              },
+              {
+                question: 'Is my personal information safe?',
+                answer: 'Absolutely. We use bank-level encryption and comply with all data protection regulations. Your privacy is our top priority.'
+              }
+            ].map((faq, idx) => (
+              <details key={idx} className="bg-white p-5 sm:p-6 rounded-lg sm:rounded-xl border border-gray-200 cursor-pointer group">
+                <summary className="font-bold text-gray-900 text-sm sm:text-base flex justify-between items-center">
+                  {faq.question}
+                  <span className="group-open:rotate-180 transition-transform ml-4 shrink-0">▼</span>
+                </summary>
+                <p className="text-gray-600 text-sm sm:text-base mt-4 leading-relaxed">{faq.answer}</p>
+              </details>
             ))}
           </div>
         </div>
