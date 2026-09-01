@@ -9,12 +9,10 @@ import { ventures } from '../data/ventures';
 export default function VenturesPage() {
   const navLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Search', href: '#' },
-    { label: 'Settings', href: '#' },
-    { label: 'Services', href: '#' },
-    { label: 'Portfolio', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'About Us', href: '#' }
+    { label: 'Ventures', href: '/ventures' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy' }
   ];
 
   return (

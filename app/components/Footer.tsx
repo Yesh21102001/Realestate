@@ -1,4 +1,5 @@
 import { Home as HomeIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -14,27 +15,25 @@ export default function Footer() {
           <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
         </div>
         <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Company</h4>
+          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Navigation</h4>
           <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="#" className="hover:text-white transition font-light">About Us</a></li>
-            <li><a href="#" className="hover:text-white transition font-light">Careers</a></li>
-            <li><a href="#" className="hover:text-white transition font-light">Blog</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Services</h4>
-          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="#" className="hover:text-white transition font-light">Buy Property</a></li>
-            <li><a href="#" className="hover:text-white transition font-light">Sell Property</a></li>
-            <li><a href="#" className="hover:text-white transition font-light">Rent</a></li>
+            <li><Link href="/" className="hover:text-white transition font-light">Home</Link></li>
+            <li><Link href="/ventures" className="hover:text-white transition font-light">Ventures</Link></li>
+            <li><Link href="/about" className="hover:text-white transition font-light">About Us</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Support</h4>
           <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="#" className="hover:text-white transition font-light">Help Center</a></li>
-            <li><a href="#" className="hover:text-white transition font-light">Contact Us</a></li>
-            <li><a href="#" className="hover:text-white transition font-light">Privacy Policy</a></li>
+            <li><Link href="/contact" className="hover:text-white transition font-light">Contact Us</Link></li>
+            <li><Link href="/privacy" className="hover:text-white transition font-light">Privacy Policy</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Contact</h4>
+          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+            <li><a href="mailto:info@nestoria.com" className="hover:text-white transition font-light">info@nestoria.com</a></li>
+            <li><a href="tel:+15551234567" className="hover:text-white transition font-light">+1 (555) 123-4567</a></li>
           </ul>
         </div>
       </div>

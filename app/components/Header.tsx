@@ -1,6 +1,6 @@
 'use client';
 
-import { Heart, Menu, X, Home as HomeIcon } from 'lucide-react';
+import { Menu, X, Home as HomeIcon } from 'lucide-react';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
 
@@ -44,9 +44,6 @@ export default function Header({ navLinks }: HeaderProps) {
 
           {/* Right Side */}
           <div className="flex gap-2 sm:gap-4 items-center">
-            <button className="text-gray-400 hover:text-gray-600 transition p-1.5">
-              <Heart className="w-5 h-5" />
-            </button>
             <button
               onClick={() => setContactFormOpen(true)}
               className="hidden sm:block px-4 sm:px-6 py-2 bg-blue-900 text-white rounded-full text-xs sm:text-sm font-semibold hover:bg-blue-800 transition"

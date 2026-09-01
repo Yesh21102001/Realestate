@@ -13,12 +13,10 @@ export default function VentureDetailPage() {
 
   const navLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Search', href: '#' },
-    { label: 'Settings', href: '#' },
-    { label: 'Services', href: '#' },
-    { label: 'Portfolio', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'About Us', href: '#' }
+    { label: 'Ventures', href: '/ventures' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy' }
   ];
 
   if (!venture) {
