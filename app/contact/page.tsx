@@ -57,17 +57,15 @@ export default function ContactPage() {
                 <Mail className="w-6 h-6 text-purple-600 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                  <p className="text-gray-600">info@nestoria.com</p>
-                  <p className="text-gray-600">support@nestoria.com</p>
+                  <a href="mailto:pavaniprakruti12@gmail.com" className="text-gray-600 hover:text-purple-600 transition">pavaniprakruti12@gmail.com</a>
                 </div>
               </div>
 
               <div className="flex gap-4">
                 <Phone className="w-6 h-6 text-purple-600 shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-gray-600">+1 (555) 987-6543</p>
+                  <h3 className="font-bold text-gray-900 mb-1">WhatsApp</h3>
+                  <a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-600 transition">+91 8790388887</a>
                 </div>
               </div>
 

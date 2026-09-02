@@ -21,46 +21,44 @@ export default function HomePage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
       <Header navLinks={navLinks} />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-20 w-64 sm:w-96 h-64 sm:h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
-          <div className="absolute -bottom-10 left-10 w-64 sm:w-96 h-64 sm:h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
+      {/* Hero Section - Desktop */}
+      <section className="hidden sm:flex relative h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/74056.jpg)' }}>
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black/20"></div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <p className="text-xs sm:text-sm mb-4 sm:mb-6 text-indigo-200 font-medium tracking-wide">Home › Search › Own</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
-            Discover Spaces <br />
-            That Feel Like <span className="text-purple-300">Home</span>
+        {/* Content */}
+        <div className="relative z-10 px-4 sm:px-6 lg:px-12 max-w-6xl text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+            Find your <br /> dream home
           </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-indigo-100 mb-8 sm:mb-12 max-w-2xl leading-relaxed font-light">
-            Find personalized spaces with unmatched community feel. Explore premium properties curated just for you.
-          </p>
+          <Link href="/ventures" className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-blue-900 rounded-full font-bold text-sm sm:text-base hover:bg-gray-100 transition">
+            Explore Ventures
+          </Link>
+        </div>
+      </section>
 
-          {/* Search Bar */}
-          <div className="bg-white rounded-2xl sm:rounded-full p-3 sm:p-2 flex flex-col sm:flex-row gap-2 sm:gap-0 w-full sm:max-w-4xl shadow-2xl">
-            <input
-              type="text"
-              placeholder="New Now"
-              className="flex-1 px-4 sm:px-6 py-3 rounded-lg sm:rounded-full outline-none text-gray-700 text-xs sm:text-sm font-medium bg-transparent placeholder-gray-400"
+      {/* Hero Section - Mobile */}
+      <section className="sm:hidden relative  bg-white flex items-center justify-center overflow-hidden">
+        <div className="max-w-4xl w-full">
+          {/* Image Container */}
+          <div className="relative">
+            <img
+              src="/mobile.png"
+              alt="Find your dream home"
+              className="w-full h-auto object-cover"
             />
-            <div className="w-full sm:w-px bg-gray-200 h-px sm:h-auto hidden sm:block"></div>
-            <select className="px-4 sm:px-6 py-3 rounded-lg sm:rounded-full outline-none text-gray-700 text-xs sm:text-sm font-medium bg-transparent border-0 cursor-pointer">
-              <option>Any Type</option>
-              <option>Apartment</option>
-              <option>House</option>
-              <option>Villa</option>
-            </select>
-            <div className="w-full sm:w-px bg-gray-200 h-px sm:h-auto hidden sm:block"></div>
-            <input
-              type="text"
-              placeholder="Budget"
-              className="px-4 sm:px-6 py-3 rounded-lg sm:rounded-full outline-none text-gray-700 text-xs sm:text-sm font-medium bg-transparent placeholder-gray-400"
-            />
-            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 sm:px-8 py-3 rounded-lg sm:rounded-full font-semibold text-xs sm:text-sm transition shrink-0">
-              Search
-            </button>
+            {/* Black Overlay */}
+            <div className="absolute inset-0 bg-black/20"></div>
+
+            {/* Content Over Image */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <h1 className="text-3xl font-bold text-white leading-tight mb-6">
+                Find your <br /> dream home
+              </h1>
+              <Link href="/ventures" className="inline-block px-6 py-2.5 bg-white text-blue-900 rounded-full font-bold text-sm hover:bg-gray-100 transition">
+                Explore Ventures
+              </Link>
+            </div>
           </div>
         </div>
       </section>

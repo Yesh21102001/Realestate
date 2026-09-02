@@ -29,8 +29,11 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can add your form submission logic (API call, email, etc.)
-    console.log('Form submitted:', formData);
+    // Send WhatsApp message
+    const whatsappMessage = `Hello, I'm interested in your services. My details: Name: ${formData.name}, Email: ${formData.email}, Phone: ${formData.phone}, Subject: ${formData.subject}, Message: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/918790388887?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
+
     setSubmitted(true);
 
     // Reset form after 2 seconds and close

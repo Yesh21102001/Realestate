@@ -32,8 +32,8 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Contact</h4>
           <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="mailto:info@nestoria.com" className="hover:text-white transition font-light">info@nestoria.com</a></li>
-            <li><a href="tel:+15551234567" className="hover:text-white transition font-light">+1 (555) 123-4567</a></li>
+            <li><a href="mailto:pavaniprakruti12@gmail.com" className="hover:text-white transition font-light">pavaniprakruti12@gmail.com</a></li>
+            <li><a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="hover:text-white transition font-light">+91 8790388887 (WhatsApp)</a></li>
           </ul>
         </div>
       </div>
