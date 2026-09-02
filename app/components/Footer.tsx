@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-700 pt-6 sm:pt-8 text-center text-xs sm:text-sm font-light">
-        <p>&copy; 2024 Nestoria. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Nestoria. All rights reserved. | Design and developed by <a href="https://hosthive.online/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition font-medium">Host Hive</a></p>
       </div>
     </footer>
   );
