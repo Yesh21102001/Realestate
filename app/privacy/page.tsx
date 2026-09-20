@@ -31,7 +31,7 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
               <p>
-                Nestoria ("we," "us," or "our") operates the website and mobile application. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platforms.
+                Vizag Yards ("we," "us," or "our") operates the website and mobile application. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platforms.
               </p>
             </div>
 
@@ -119,7 +119,7 @@ export default function PrivacyPage() {
                 If you have questions about this Privacy Policy or our privacy practices, please contact us at:
               </p>
               <div className="mt-4 bg-gray-50 p-4 rounded-lg">
-                <p className="font-semibold text-gray-900">Nestoria Privacy Team</p>
+                <p className="font-semibold text-gray-900">Vizag Yards Privacy Team</p>
                 <p>Email: privacy@nestoria.com</p>
                 <p>Phone: +1 (555) 123-4567</p>
                 <p>Address: 123 Real Estate Avenue, New York, NY 10001</p>
@@ -128,7 +128,7 @@ export default function PrivacyPage() {
 
             <div className="pt-8 border-t border-gray-200">
               <p className="text-sm text-gray-500">
-                Last Updated: {new Date().getFullYear()}. This privacy policy is effective as of the date last updated and applies to all users of the Nestoria platform.
+                Last Updated: {new Date().getFullYear()}. This privacy policy is effective as of the date last updated and applies to all users of the Vizag Yards platform.
               </p>
             </div>
           </div>

@@ -207,7 +207,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
           <div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight">
-              WHY CHOOSE <br /> NESTORIA
+              WHY CHOOSE <br /> VIZAG YARDS
             </h2>
             <p className="text-gray-600 mb-8 sm:mb-10 leading-relaxed text-sm sm:text-base font-light">
               Use other more-first access. We deliver premium service and transparent dealings with genuine customer feedback. Real homes for real people.
@@ -270,7 +270,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {[
-              { avatar: '👩', name: 'Sarah Johnson', role: 'Happy Customer', text: 'Finding my dream home was incredibly easy with Nestoria. The process was smooth, transparent and hassle-free from start to finish.' },
+              { avatar: '👩', name: 'Sarah Johnson', role: 'Happy Customer', text: 'Finding my dream home was incredibly easy with Vizag Yards. The process was smooth, transparent and hassle-free from start to finish.' },
               { avatar: '👩‍💼', name: 'Emily Garcia', role: 'Verified Buyer', text: 'Excellent service with outstanding support team. They made the entire buying process transparent, comfortable and stress-free.' }
             ].map((test, idx) => (
               <div key={idx} className="bg-gray-50 p-5 sm:p-6 lg:p-8 rounded-lg sm:rounded-xl lg:rounded-2xl border border-gray-100">
@@ -304,7 +304,7 @@ export default function HomePage() {
               },
               {
                 question: 'Are all properties verified?',
-                answer: 'Yes! Every property on Nestoria is thoroughly verified by our team. We check documentation, take photos, and ensure all information is accurate and up-to-date.'
+                answer: 'Yes! Every property on Vizag Yards is thoroughly verified by our team. We check documentation, take photos, and ensure all information is accurate and up-to-date.'
               },
               {
                 question: 'What is your refund policy?',
@@ -346,7 +346,7 @@ export default function HomePage() {
             Ready To Find Your Dream Home?
           </h2>
           <p className="text-xs sm:text-sm lg:text-base text-indigo-100 mb-8 sm:mb-10 lg:mb-12 leading-relaxed font-light px-2">
-            Join thousands of satisfied customers who discovered their perfect space with Nestoria. Your journey starts here.
+            Join thousands of satisfied customers who discovered their perfect space with Vizag Yards. Your journey starts here.
           </p>
           <button className="px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-4 bg-white text-blue-900 rounded-full font-bold text-xs sm:text-sm lg:text-base hover:bg-gray-100 transition">
             Get Started Now

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nestoria - Real Estate",
-  description: "Find your dream home with Nestoria",
+  title: "Vizag Yards - Real Estate",
+  description: "Find your dream home with Vizag Yards",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

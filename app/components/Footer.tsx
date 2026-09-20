@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="w-7 sm:w-8 h-7 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
               <HomeIcon className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
             </div>
-            <span className="font-bold text-white text-sm sm:text-base">Nestoria</span>
+            <span className="font-bold text-white text-sm sm:text-base">Vizag Yards</span>
           </div>
           <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
         </div>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-700 pt-6 sm:pt-8 text-center text-xs sm:text-sm font-light">
-        <p>&copy; {new Date().getFullYear()} Nestoria. All rights reserved. | Design and developed by <a href="https://hosthive.online/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition font-medium">Host Hive</a></p>
+        <p>&copy; {new Date().getFullYear()} Vizag Yards. All rights reserved. | Design and developed by <a href="https://hosthive.online/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition font-medium">Host Hive</a></p>
       </div>
     </footer>
   );

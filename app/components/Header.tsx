@@ -26,7 +26,7 @@ export default function Header({ navLinks }: HeaderProps) {
             <div className="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
               <HomeIcon className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg sm:text-xl font-bold text-blue-900">Nestoria</span>
+            <span className="text-lg sm:text-xl font-bold text-blue-900">Vizag Yards</span>
           </div>
 
           {/* Desktop Navigation */}
