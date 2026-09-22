@@ -22,9 +22,9 @@ export default function HomePage() {
       <Header navLinks={navLinks} />
 
       {/* Hero Section - Desktop */}
-      <section className="hidden sm:flex relative h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/images/Radian_Silcon_images/Radian_Silcon-Park-Brochure_29-06-26-images-1.jpg)' }}>
+      <section className="hidden sm:flex relative h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/images/Radian_Silcon_images/hero.png)' }}>
         {/* Black Overlay */}
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
         <div className="relative z-10 px-4 sm:px-6 lg:px-12 max-w-6xl text-center">

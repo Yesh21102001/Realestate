@@ -73,8 +73,10 @@ export default function ContactPage() {
                 <MapPin className="w-6 h-6 text-purple-600 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Address</h3>
-                  <p className="text-gray-600">123 Real Estate Avenue</p>
-                  <p className="text-gray-600">New York, NY 10001</p>
+                  <p className="text-gray-600">Sai Trade Center, 2nd Floor</p>
+                  <p className="text-gray-600">Prakruti Avenue Pvt Ltd</p>
+                  <p className="text-gray-600">Dwaraka Nagar Second Line</p>
+                  <p className="text-gray-600">Visakhapatnam</p>
                 </div>
               </div>
             </div>

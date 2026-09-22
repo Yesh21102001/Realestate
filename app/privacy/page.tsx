@@ -120,9 +120,9 @@ export default function PrivacyPage() {
               </p>
               <div className="mt-4 bg-gray-50 p-4 rounded-lg">
                 <p className="font-semibold text-gray-900">Vizag Yards Privacy Team</p>
-                <p>Email: privacy@nestoria.com</p>
-                <p>Phone: +1 (555) 123-4567</p>
-                <p>Address: 123 Real Estate Avenue, New York, NY 10001</p>
+                <p>Email: pavaniprakruti12@gmail.com</p>
+                <p>Phone: +91 8790388887</p>
+                <p>Address: Sai Trade Center, 2nd Floor, Prakruti Avenue Pvt Ltd, Dwaraka Nagar Second Line, Visakhapatnam</p>
               </div>
             </div>
 
