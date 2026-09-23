@@ -76,9 +76,9 @@ export default function VentureDetailPage() {
         <section className="px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-28 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12">Project Gallery</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {venture.gallery.map((img, idx) => (
-                <div key={idx} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition duration-300 aspect-square sm:aspect-video cursor-pointer">
+                <div key={idx} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition duration-300 aspect-square cursor-pointer">
                   <img
                     src={img}
                     alt={`${venture.name} - Image ${idx + 1}`}
@@ -286,23 +286,6 @@ export default function VentureDetailPage() {
             </div>
           )}
 
-          {/* Developer Info */}
-          {venture.developerInfo && (
-            <div className="mb-10 sm:mb-12 bg-purple-50 p-6 sm:p-8 rounded-xl">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">About Developer</h2>
-              <p className="text-gray-700 leading-relaxed mb-6">{venture.developerInfo}</p>
-              {venture.developerStats && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {venture.developerStats.map((stat, idx) => (
-                    <div key={idx} className="bg-white p-4 rounded-lg text-center">
-                      <p className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">{stat.value}</p>
-                      <p className="text-gray-600 text-xs sm:text-sm">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
 
           {/* Contact Info */}
           {venture.contact && (
@@ -332,14 +315,14 @@ export default function VentureDetailPage() {
                 <p className="text-gray-300 text-sm mb-2">Starting Price</p>
                 <p className="text-4xl sm:text-5xl font-bold">{venture.price}</p>
               </div>
-              <div className="flex gap-3 w-full sm:w-auto">
-                <button className="flex-1 sm:flex-none py-3 sm:py-4 px-6 bg-white text-blue-900 rounded-lg font-semibold hover:bg-gray-100 transition text-sm sm:text-base">
-                  Schedule Tour
-                </button>
-                <button className="flex-1 sm:flex-none py-3 sm:py-4 px-6 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition text-sm sm:text-base">
-                  Enquire Now
-                </button>
-              </div>
+              <a
+                href="https://wa.me/918790388887?text=Hi, I am interested in Radian Silicon Park. Please share more details."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 sm:py-4 px-8 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition text-sm sm:text-base flex items-center gap-2"
+              >
+                <span>💬</span> WhatsApp Enquiry
+              </a>
             </div>
           </div>
         </div>

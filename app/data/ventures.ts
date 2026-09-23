@@ -190,8 +190,8 @@ export const ventures: Venture[] = [
     ],
     contact: {
       address: 'Door No: 47-10-25/1, Sai Trade Centre, 2nd Floor, 2nd Lane, Dwaraka Nagar, Visakhapatnam, A.P - 530 016',
-      email: 'info@prakrutiavenues.com',
-      website: 'www.prakrutiavenues.com'
+      email: 'pavaniprakruti12@gmail.com',
+      website: 'www.vizagyards.com'
     }
   }
 ];

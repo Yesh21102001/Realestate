@@ -21,45 +21,19 @@ export default function HomePage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
       <Header navLinks={navLinks} />
 
-      {/* Hero Section - Desktop */}
-      <section className="hidden sm:flex relative h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/images/Radian_Silcon_images/hero.png)' }}>
+      {/* Hero Section */}
+      <section className="relative h-[500px] sm:h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/images/Radian_Silcon_images/hero.png)' }}>
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
         <div className="relative z-10 px-4 sm:px-6 lg:px-12 max-w-6xl text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
             Find your <br /> dream home
           </h1>
           <Link href="/ventures" className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-blue-900 rounded-full font-bold text-sm sm:text-base hover:bg-gray-100 transition">
             Explore Ventures
           </Link>
-        </div>
-      </section>
-
-      {/* Hero Section - Mobile */}
-      <section className="sm:hidden relative  bg-white flex items-center justify-center overflow-hidden">
-        <div className="max-w-4xl w-full">
-          {/* Image Container */}
-          <div className="relative">
-            <img
-              src="/mobile.png"
-              alt="Find your dream home"
-              className="w-full h-auto object-cover"
-            />
-            {/* Black Overlay */}
-            <div className="absolute inset-0 bg-black/20"></div>
-
-            {/* Content Over Image */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <h1 className="text-3xl font-bold text-white leading-tight mb-6">
-                Find your <br /> dream home
-              </h1>
-              <Link href="/ventures" className="inline-block px-6 py-2.5 bg-white text-blue-900 rounded-full font-bold text-sm hover:bg-gray-100 transition">
-                Explore Ventures
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
