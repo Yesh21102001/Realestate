@@ -1,6 +1,8 @@
 'use client';
 
-import { Menu, X, Home as HomeIcon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
 
@@ -22,12 +24,15 @@ export default function Header({ navLinks }: HeaderProps) {
       <div className="w-full px-4 py-3 sm:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-              <HomeIcon className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-lg sm:text-xl font-bold text-blue-900">Vizag Yards</span>
-          </div>
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 hover:opacity-80 transition">
+            <Image
+              src="/logo.png"
+              alt="Vizag Yards Logo"
+              width={110}
+              height={110}
+              className="flex-shrink-0"
+            />
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex gap-6 xl:gap-8 text-xs sm:text-sm font-medium">

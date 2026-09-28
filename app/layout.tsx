@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BottomNav from "./components/BottomNav";
-import CallButton from "./components/CallButton";
+import FloatingCallButton from "./components/FloatingCallButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Vizag Yards - Real Estate",
   description: "Find your dream home with Vizag Yards",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -28,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col pb-24 lg:pb-0">
         {children}
         <BottomNav />
-        <CallButton />
+        <FloatingCallButton />
       </body>
     </html>
   );

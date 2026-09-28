@@ -1,4 +1,4 @@
-import { Home as HomeIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -7,9 +7,13 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
         <div>
           <div className="flex items-center gap-2 mb-3 sm:mb-4">
-            <div className="w-7 sm:w-8 h-7 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
-              <HomeIcon className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Vizag Yards Logo"
+              width={32}
+              height={32}
+              className="shrink-0"
+            />
             <span className="font-bold text-white text-sm sm:text-base">Vizag Yards</span>
           </div>
           <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
@@ -32,8 +36,9 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Contact</h4>
           <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="mailto:pavaniprakruti12@gmail.com" className="hover:text-white transition font-light">pavaniprakruti12@gmail.com</a></li>
+            <li><a href="mailto:info@prakrtiavenues.com" className="hover:text-white transition font-light">info@prakrtiavenues.com</a></li>
             <li><a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="hover:text-white transition font-light">+91 8790388887 (WhatsApp)</a></li>
+            <li><a href="https://vizagyards.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition font-light">vizagyards.com</a></li>
           </ul>
         </div>
       </div>
