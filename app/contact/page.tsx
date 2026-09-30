@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SchemaMarkup from '../components/SchemaMarkup';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { organizationSchema } from '../lib/seo';
+import { organizationSchema, keywordClusters } from '../lib/seo';
 
 export default function ContactPage() {
   const navLinks = [
@@ -24,10 +24,14 @@ export default function ContactPage() {
   });
 
   useEffect(() => {
-    document.title = 'Contact Vizag Yards - Real Estate Inquiry';
+    document.title = 'Contact Vizag Yards - Plots & Ventures Inquiry Visakhapatnam';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Contact Vizag Yards (Prakruthi Avenues) for property inquiries. Call us at +91 8790388887 or visit our office in Visakhapatnam. 24/7 support available.');
+      metaDescription.setAttribute('content', 'Contact Vizag Yards for plot inquiries in Vizag. Call +91 8790388887 for VMRDA approved residential plots. Book a site visit to our ventures in Visakhapatnam.');
+    }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', ['Vizag Yards', 'Contact Real Estate', 'Plot Inquiry', 'Buy Plots', 'Visakhapatnam', 'Vizag Real Estate Contact'].join(', '));
     }
   }, []);
 

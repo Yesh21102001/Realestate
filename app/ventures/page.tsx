@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ventures } from '../data/ventures';
 import SchemaMarkup from '../components/SchemaMarkup';
+import { keywordClusters } from '../lib/seo';
 
 export default function VenturesPage() {
   const navLinks = [
@@ -18,10 +19,14 @@ export default function VenturesPage() {
   ];
 
   useEffect(() => {
-    document.title = 'All Properties & Ventures | Vizag Yards - Real Estate in Visakhapatnam';
+    document.title = 'All Plots & Ventures in Vizag | Residential Plot Projects | Vizag Yards';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore premium residential properties and ventures in Visakhapatnam. Browse all available projects by Prakruthi Avenues including Radian Silicon Park and Nexus Valley.');
+      metaDescription.setAttribute('content', 'Explore all residential ventures in Vizag. Browse approved open plots, gated communities, and premium projects in Visakhapatnam by Vizag Yards including Radian Silicon Park and Nexus Valley.');
+    }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', [...keywordClusters.venture, ...keywordClusters.locationBased.slice(0, 3)].join(', '));
     }
   }, []);
 

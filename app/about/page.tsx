@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SchemaMarkup from '../components/SchemaMarkup';
-import { organizationSchema } from '../lib/seo';
+import { organizationSchema, keywordClusters } from '../lib/seo';
 
 export default function AboutPage() {
   const navLinks = [
@@ -16,10 +16,14 @@ export default function AboutPage() {
   ];
 
   useEffect(() => {
-    document.title = 'About Vizag Yards - Prakruthi Avenues Real Estate';
+    document.title = 'About Vizag Yards - Prakruthi Avenues Real Estate in Visakhapatnam';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Learn about Vizag Yards and Prakruthi Avenues. 35+ years of experience delivering premium real estate projects in Visakhapatnam. Trusted by 2000+ families.');
+      metaDescription.setAttribute('content', 'About Vizag Yards - Prakruthi Avenues. 35+ years delivering premium approved residential plots in Vizag. VMRDA approved ventures trusted by 2000+ families.');
+    }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', [...keywordClusters.brand, ...keywordClusters.venture.slice(0, 3)].join(', '));
     }
   }, []);
 

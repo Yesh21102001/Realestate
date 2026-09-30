@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BottomNav from "./components/BottomNav";
 import FloatingCallButton from "./components/FloatingCallButton";
-import { siteConfig, organizationSchema } from "./lib/seo";
+import { siteConfig, organizationSchema, keywordClusters } from "./lib/seo";
 import SchemaMarkup from "./components/SchemaMarkup";
 
 const geistSans = Geist({
@@ -17,19 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vizag Yards - Premium Real Estate & Properties in Visakhapatnam",
-  description: "Discover premium residential properties and plots in Visakhapatnam by Prakruthi Avenues. Find your dream home with modern amenities and excellent connectivity.",
+  title: "Vizag Yards - Plots for Sale in Vizag & Visakhapatnam",
+  description: "Buy premium residential plots in Vizag. Vizag Yards offers VMRDA approved open plots in Visakhapatnam with gated community amenities. Best plots for sale near Bhogapuram Airport.",
   keywords: [
-    "real estate Vizag",
-    "properties Visakhapatnam",
-    "Prakruthi Avenues",
-    "residential plots Vizag",
-    "buy property Visakhapatnam",
-    "Radian Silicon Park",
-    "Nexus Valley",
-    "premium properties Vizag",
-    "land in Bhogapuram",
-    "real estate broker Visakhapatnam"
+    ...keywordClusters.primary.slice(0, 5),
+    ...keywordClusters.highIntent.slice(0, 3),
+    'VMRDA approved plots',
+    'gated community plots Vizag',
   ],
   icons: {
     icon: "/logo.png",

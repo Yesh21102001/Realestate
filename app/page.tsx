@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SchemaMarkup from './components/SchemaMarkup';
 import { ventures } from './data/ventures';
-import { realEstateAgentSchema } from './lib/seo';
+import { realEstateAgentSchema, keywordClusters } from './lib/seo';
 
 export default function HomePage() {
   const navLinks = [
@@ -21,10 +21,14 @@ export default function HomePage() {
   const featuredVentures = ventures.slice(0, 3);
 
   useEffect(() => {
-    document.title = 'Vizag Yards - Premium Real Estate & Properties in Visakhapatnam';
+    document.title = 'Vizag Yards - Buy Plots in Vizag | Residential Plots in Visakhapatnam';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Discover premium residential properties and plots in Visakhapatnam by Prakruthi Avenues. Find your dream home with modern amenities and excellent connectivity.');
+      metaDescription.setAttribute('content', 'Buy best residential plots in Vizag. Vizag Yards offers VMRDA approved open plots near Bhogapuram Airport. Premium gated community ventures in Visakhapatnam with modern amenities.');
+    }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', [...keywordClusters.primary, ...keywordClusters.highIntent.slice(0, 2), 'VMRDA approved plots'].join(', '));
     }
   }, []);
 

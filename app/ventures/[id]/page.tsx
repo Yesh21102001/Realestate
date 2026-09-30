@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 import { getVentureById } from '../../data/ventures';
 import SchemaMarkup from '../../components/SchemaMarkup';
 import { useParams } from 'next/navigation';
-import { propertySchema, siteConfig } from '../../lib/seo';
+import { propertySchema, siteConfig, keywordClusters } from '../../lib/seo';
 
 export default function VentureDetailPage() {
   const params = useParams();
@@ -24,13 +24,27 @@ export default function VentureDetailPage() {
 
   useEffect(() => {
     if (venture) {
-      document.title = `${venture.name} - Premium Property in ${venture.loc} | Vizag Yards`;
+      const locationKeyword = venture.name.includes('Radian') ? 'Bhogapuram' : venture.loc;
+      document.title = `${venture.name} - Buy Plots in ${locationKeyword} | Vizag Yards`;
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute(
           'content',
-          `${venture.name} in ${venture.loc}. ${venture.description} Beds: ${venture.beds}, Baths: ${venture.baths}, Price: ${venture.price}. Buy property now.`
+          `${venture.name} - Premium residential plots in ${venture.loc}. ${venture.description} Approved plots with ₹${venture.price} price. Best investment opportunity.`
         );
+      }
+      const metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (metaKeywords) {
+        const ventureKeywords = [
+          `${venture.name}`,
+          `Plots in ${locationKeyword}`,
+          `Plots for Sale in ${locationKeyword}`,
+          `Buy Plots in ${locationKeyword}`,
+          ...keywordClusters.investment.slice(0, 2),
+          'VMRDA approved plots',
+          'Gated community plots',
+        ];
+        metaKeywords.setAttribute('content', ventureKeywords.join(', '));
       }
     }
   }, [venture]);
