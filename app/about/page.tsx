@@ -1,7 +1,10 @@
 'use client';
 
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SchemaMarkup from '../components/SchemaMarkup';
+import { organizationSchema } from '../lib/seo';
 
 export default function AboutPage() {
   const navLinks = [
@@ -12,8 +15,17 @@ export default function AboutPage() {
     { label: 'Privacy Policy', href: '/privacy' }
   ];
 
+  useEffect(() => {
+    document.title = 'About Vizag Yards - Prakruthi Avenues Real Estate';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn about Vizag Yards and Prakruthi Avenues. 35+ years of experience delivering premium real estate projects in Visakhapatnam. Trusted by 2000+ families.');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      <SchemaMarkup schema={organizationSchema} />
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}

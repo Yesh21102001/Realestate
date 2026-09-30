@@ -2,9 +2,11 @@
 
 import { MapPin, Heart } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ventures } from '../data/ventures';
+import SchemaMarkup from '../components/SchemaMarkup';
 
 export default function VenturesPage() {
   const navLinks = [
@@ -15,8 +17,39 @@ export default function VenturesPage() {
     { label: 'Privacy Policy', href: '/privacy' }
   ];
 
+  useEffect(() => {
+    document.title = 'All Properties & Ventures | Vizag Yards - Real Estate in Visakhapatnam';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Explore premium residential properties and ventures in Visakhapatnam. Browse all available projects by Prakruthi Avenues including Radian Silicon Park and Nexus Valley.');
+    }
+  }, []);
+
+  const collectiveListingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'All Properties & Ventures',
+    description: 'Explore premium residential properties and ventures in Visakhapatnam',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: ventures.map((venture, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        item: {
+          '@type': 'Residence',
+          name: venture.name,
+          url: `https://vizagyards.com/ventures/${venture.id}`,
+          image: `https://vizagyards.com${venture.image}`,
+          description: venture.description,
+          areaServed: venture.loc,
+        },
+      })),
+    },
+  };
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      <SchemaMarkup schema={collectiveListingSchema} />
       <Header navLinks={navLinks} />
 
       {/* Ventures Section */}

@@ -2,9 +2,12 @@
 
 import { Heart, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SchemaMarkup from './components/SchemaMarkup';
 import { ventures } from './data/ventures';
+import { realEstateAgentSchema } from './lib/seo';
 
 export default function HomePage() {
   const navLinks = [
@@ -17,8 +20,17 @@ export default function HomePage() {
 
   const featuredVentures = ventures.slice(0, 3);
 
+  useEffect(() => {
+    document.title = 'Vizag Yards - Premium Real Estate & Properties in Visakhapatnam';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Discover premium residential properties and plots in Visakhapatnam by Prakruthi Avenues. Find your dream home with modern amenities and excellent connectivity.');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      <SchemaMarkup schema={realEstateAgentSchema} />
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}

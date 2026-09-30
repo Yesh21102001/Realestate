@@ -1,9 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SchemaMarkup from '../components/SchemaMarkup';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { useState } from 'react';
+import { organizationSchema } from '../lib/seo';
 
 export default function ContactPage() {
   const navLinks = [
@@ -21,6 +23,14 @@ export default function ContactPage() {
     message: ''
   });
 
+  useEffect(() => {
+    document.title = 'Contact Vizag Yards - Real Estate Inquiry';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Contact Vizag Yards (Prakruthi Avenues) for property inquiries. Call us at +91 8790388887 or visit our office in Visakhapatnam. 24/7 support available.');
+    }
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -35,6 +45,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      <SchemaMarkup schema={organizationSchema} />
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}

@@ -2,10 +2,13 @@
 
 import { MapPin, Heart, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { getVentureById } from '../../data/ventures';
+import SchemaMarkup from '../../components/SchemaMarkup';
 import { useParams } from 'next/navigation';
+import { propertySchema, siteConfig } from '../../lib/seo';
 
 export default function VentureDetailPage() {
   const params = useParams();
@@ -18,6 +21,19 @@ export default function VentureDetailPage() {
     { label: 'Contact', href: '/contact' },
     { label: 'Privacy Policy', href: '/privacy' }
   ];
+
+  useEffect(() => {
+    if (venture) {
+      document.title = `${venture.name} - Premium Property in ${venture.loc} | Vizag Yards`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          'content',
+          `${venture.name} in ${venture.loc}. ${venture.description} Beds: ${venture.beds}, Baths: ${venture.baths}, Price: ${venture.price}. Buy property now.`
+        );
+      }
+    }
+  }, [venture]);
 
   if (!venture) {
     return (
@@ -36,8 +52,11 @@ export default function VentureDetailPage() {
     );
   }
 
+  const schema = propertySchema(venture);
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      <SchemaMarkup schema={schema} />
       <Header navLinks={navLinks} />
 
       {/* Back Button */}
