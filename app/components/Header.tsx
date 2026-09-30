@@ -40,7 +40,7 @@ export default function Header({ navLinks }: HeaderProps) {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-gray-600 hover:text-purple-600 transition whitespace-nowrap"
+                className="text-gray-600 hover:text-blue-900 transition whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -74,7 +74,7 @@ export default function Header({ navLinks }: HeaderProps) {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-600 hover:text-purple-600 transition text-sm font-medium py-2"
+                  className="text-gray-600 hover:text-blue-900 transition text-sm font-medium py-2"
                 >
                   {link.label}
                 </a>

@@ -38,7 +38,7 @@ export default function ContactPage() {
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
+      <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Get In Touch</h1>
           <p className="text-lg sm:text-xl text-indigo-100">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
@@ -54,23 +54,23 @@ export default function ContactPage() {
 
             <div className="space-y-8">
               <div className="flex gap-4">
-                <Mail className="w-6 h-6 text-purple-600 shrink-0 mt-1" />
+                <Mail className="w-6 h-6 text-blue-900 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                  <a href="mailto:info@prakrtiavenues.com" className="text-gray-600 hover:text-purple-600 transition">info@prakrtiavenues.com</a>
+                  <a href="mailto:info@prakrtiavenues.com" className="text-gray-600 hover:text-blue-900 transition">info@prakrtiavenues.com</a>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <Phone className="w-6 h-6 text-purple-600 shrink-0 mt-1" />
+                <Phone className="w-6 h-6 text-blue-900 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">WhatsApp</h3>
-                  <a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-600 transition">+91 8790388887</a>
+                  <a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-900 transition">+91 8790388887</a>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <MapPin className="w-6 h-6 text-purple-600 shrink-0 mt-1" />
+                <MapPin className="w-6 h-6 text-blue-900 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Address</h3>
                   <p className="text-gray-600">Sai Trade Center, 2nd Floor</p>
@@ -97,7 +97,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
                     placeholder="John Doe"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -129,7 +129,7 @@ export default function ContactPage() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
@@ -145,7 +145,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 resize-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 resize-none"
                   placeholder="Tell us how we can help you..."
                 />
               </div>

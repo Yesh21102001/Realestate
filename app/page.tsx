@@ -46,7 +46,7 @@ export default function HomePage() {
             { icon: '🕐', title: '24/7 Support', desc: 'Round the clock support' },
             { icon: '💰', title: 'Best Price Guarantee', desc: 'Best market price' }
           ].map((feature, idx) => (
-            <div key={idx} className="bg-white border border-purple-100 p-6 sm:p-8 rounded-xl sm:rounded-2xl text-center hover:shadow-md transition duration-300">
+            <div key={idx} className="bg-white border border-blue-100 p-6 sm:p-8 rounded-xl sm:rounded-2xl text-center hover:shadow-md transition duration-300">
               <div className="text-4xl sm:text-5xl mb-4 sm:mb-5 flex justify-center">{feature.icon}</div>
               <h3 className="font-bold text-gray-900 mb-2 text-xs sm:text-sm">{feature.title}</h3>
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
@@ -60,7 +60,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 sm:mb-14">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Discover Your Perfect</h2>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600">Property Match</h3>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-900">Property Match</h3>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -118,7 +118,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">Featured Properties</h2>
-            <a href="/ventures" className="text-purple-600 font-semibold hover:text-purple-700 text-xs sm:text-sm whitespace-nowrap">
+            <a href="/ventures" className="text-blue-900 font-semibold hover:text-blue-800 text-xs sm:text-sm whitespace-nowrap">
               View All Properties →
             </a>
           </div>
@@ -189,7 +189,7 @@ export default function HomePage() {
             <div className="space-y-4 sm:space-y-5 lg:space-y-6">
               {['Personalized recommendations', 'Verified listings & owners', 'Secure transactions & support', 'Best market prices guaranteed'].map((item, i) => (
                 <div key={i} className="flex gap-3 sm:gap-4 items-start">
-                  <span className="text-purple-600 font-bold text-lg sm:text-xl shrink-0">✓</span>
+                  <span className="text-blue-900 font-bold text-lg sm:text-xl shrink-0">✓</span>
                   <span className="text-gray-700 font-medium text-sm sm:text-base pt-1">{item}</span>
                 </div>
               ))}
@@ -224,7 +224,7 @@ export default function HomePage() {
               { num: 3, title: 'Move In & Enjoy', desc: 'Complete process and move in' }
             ].map((step) => (
               <div key={step.num} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-full mb-6 sm:mb-8 font-bold text-2xl sm:text-3xl lg:text-4xl shadow-lg">
+                <div className="inline-flex items-center justify-center w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24 bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-full mb-6 sm:mb-8 font-bold text-2xl sm:text-3xl lg:text-4xl shadow-lg">
                   {step.num}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{step.title}</h3>
@@ -310,9 +310,9 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+          <div className="absolute top-0 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">

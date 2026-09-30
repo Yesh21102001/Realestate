@@ -33,7 +33,7 @@ export default function BottomNav() {
               href={item.href}
               className={`flex-1 flex flex-col items-center justify-center py-3 px-2 transition-colors duration-200 ${
                 active
-                  ? 'text-purple-600 border-t-2 border-purple-600'
+                  ? 'text-blue-900 border-t-2 border-blue-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >

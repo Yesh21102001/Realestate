@@ -193,6 +193,76 @@ export const ventures: Venture[] = [
       email: 'pavaniprakruti12@gmail.com',
       website: 'www.vizagyards.com'
     }
+  },
+  {
+    id: '3',
+    tag: 'NEW',
+    tagBg: 'bg-green-500',
+    name: 'River Oaks Grand',
+    loc: 'Bobbili, Vizianagaram',
+    beds: 3,
+    baths: 2,
+    sqft: '1,250 - 1,350',
+    price: '₹44 - 48 Lakhs',
+    image: '/images/river-oaks/gate.jpg',
+    tagline: 'Residential Township at Ramabhadrapuram',
+    overview: 'Prakruti Avenues is launching its prestigious new exciting venture RIVER OAKS GRAND Residential Township situated at Ramabhadrapuram, Bobbili, Vizianagaram Dist. The venture has everything to offer in terms of facilities and comfort.',
+    siteArea: 'Premium Residential Plots',
+    projectArea: 'Residential Township',
+    description: 'River Oaks Grand is a BUDA Approved (Layout No. 3/2026) residential township with independent houses offering vaasthu compliant designs and modern amenities in Bobbili, Vizianagaram District.',
+    features: [
+      'BUDA Approved Layout No. 3/2026',
+      'Vaasthu Compliant Design',
+      'Secured Compound Wall with Elevated Arch',
+      '40ft & 30ft Black Top Roads',
+      'Drainage System & Electricity',
+      'Children Park & Avenue Plantation with Tree Guards',
+      'Proposed Independent Houses',
+      '100% Vaasthu Layout',
+      'Bank Loans Available'
+    ],
+    amenities: [
+      '24/7 Security',
+      'Children Park',
+      'Tree Plantation',
+      'Drainage System',
+      'Electricity',
+      'Road Network',
+      'Parking',
+      'Community Space'
+    ],
+    projectHighlights: [
+      'Adjacent to NH-43',
+      '1.5 km from Rama Bhadrapuram Junction',
+      '5 km from Bobbili APIIC (SEZ) Growth Center',
+      '9 km from Bobbili Railway Station',
+      'Very good Land for Soil Bearing Capacity',
+      'Very close to Ashoka Eye Hospital',
+      'Connectivity to Salur & Bobbili Municipality'
+    ],
+    distancesFromSite: [
+      { location: 'Rama Bhadrapuram Jn.', distance: '1.5 Km' },
+      { location: 'Bobbili APIIC (SEZ) Growth Center', distance: '5 Km' },
+      { location: 'Bobbili Railway Station', distance: '9 Km' },
+      { location: 'Ashoka Eye Hospital', distance: 'Very Close' },
+      { location: 'NH-43', distance: 'Adjacent' }
+    ],
+    locationBenefits: 'River Oaks Grand is strategically located in the Bobbili area with excellent connectivity via NH-43. The project offers excellent accessibility to major commercial centers, healthcare facilities, and railway connectivity. Close proximity to APIIC Growth Center makes it ideal for investment.',
+    keyHighlights: [
+      'BUDA Approved Township',
+      'Independent Houses',
+      'Vaasthu Compliant Designs',
+      'Premium Location in Bobbili',
+      'Excellent Road Connectivity',
+      'Near Railway Station',
+      'Growth Center Proximity',
+      'Hospital Nearby'
+    ],
+    contact: {
+      address: 'Door No: 47-10-25/1, Sai Trade Centre, 2nd Floor, 2nd Lane, Dwaraka Nagar, Visakhapatnam, A.P - 530 016',
+      email: 'pavaniprakruti12@gmail.com',
+      website: 'www.vizagyards.com'
+    }
   }
 ];
 

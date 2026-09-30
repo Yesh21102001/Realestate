@@ -17,7 +17,7 @@ export default function AboutPage() {
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
+      <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">About Vizag Yards</h1>
           <p className="text-lg sm:text-xl text-indigo-100">Transforming the real estate industry through innovation and trust</p>
@@ -80,28 +80,28 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">Why Choose Us</h2>
             <div className="space-y-4">
               <div className="flex gap-4 items-start">
-                <span className="text-purple-600 font-bold text-2xl mt-1">✓</span>
+                <span className="text-blue-900 font-bold text-2xl mt-1">✓</span>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Verified Listings</h3>
                   <p className="text-gray-600">Every property is thoroughly verified and photographed by our team</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
-                <span className="text-purple-600 font-bold text-2xl mt-1">✓</span>
+                <span className="text-blue-900 font-bold text-2xl mt-1">✓</span>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Expert Team</h3>
                   <p className="text-gray-600">Our experienced professionals are here to guide you through every step</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
-                <span className="text-purple-600 font-bold text-2xl mt-1">✓</span>
+                <span className="text-blue-900 font-bold text-2xl mt-1">✓</span>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">24/7 Support</h3>
                   <p className="text-gray-600">Round-the-clock customer support to address your questions anytime</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
-                <span className="text-purple-600 font-bold text-2xl mt-1">✓</span>
+                <span className="text-blue-900 font-bold text-2xl mt-1">✓</span>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Best Prices</h3>
                   <p className="text-gray-600">We guarantee competitive pricing and exclusive deals for our members</p>

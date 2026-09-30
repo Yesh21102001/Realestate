@@ -26,7 +26,7 @@ export default function VentureDetailPage() {
         <div className="flex items-center justify-center min-h-[60vh] px-4">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Venture not found</h1>
-            <Link href="/ventures" className="text-purple-600 hover:text-purple-700 font-semibold">
+            <Link href="/ventures" className="text-blue-900 hover:text-blue-800 font-semibold">
               Back to Ventures
             </Link>
           </div>
@@ -43,7 +43,7 @@ export default function VentureDetailPage() {
       {/* Back Button */}
       <div className="px-4 sm:px-6 lg:px-12 py-4 sm:py-6">
         <div className="max-w-6xl mx-auto">
-          <Link href="/ventures" className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold text-sm mb-4">
+          <Link href="/ventures" className="inline-flex items-center gap-2 text-blue-900 hover:text-blue-800 font-semibold text-sm mb-4">
             <ChevronLeft className="w-4 h-4" />
             Back to Ventures
           </Link>
@@ -98,13 +98,13 @@ export default function VentureDetailPage() {
           {/* Header Info */}
           <div className="mb-8 sm:mb-10">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">{venture.name}</h1>
-            {venture.tagline && <p className="text-lg sm:text-xl text-purple-600 font-semibold mb-4">{venture.tagline}</p>}
+            {venture.tagline && <p className="text-lg sm:text-xl text-blue-900 font-semibold mb-4">{venture.tagline}</p>}
             <div className="flex items-center gap-2 text-gray-600 mb-4">
               <MapPin className="w-5 h-5 shrink-0" />
               <span className="text-sm sm:text-base">{venture.loc}</span>
             </div>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">{venture.description}</p>
-            {venture.overview && <p className="text-gray-700 text-base leading-relaxed italic border-l-4 border-purple-600 pl-4">{venture.overview}</p>}
+            {venture.overview && <p className="text-gray-700 text-base leading-relaxed italic border-l-4 border-blue-900 pl-4">{venture.overview}</p>}
           </div>
 
           {/* Site Area Info */}
@@ -144,7 +144,7 @@ export default function VentureDetailPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {venture.features.map((feature, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
-                    <span className="text-purple-600 font-bold text-lg shrink-0">✓</span>
+                    <span className="text-blue-900 font-bold text-lg shrink-0">✓</span>
                     <span className="text-gray-700 text-sm sm:text-base">{feature}</span>
                   </div>
                 ))}
@@ -159,7 +159,7 @@ export default function VentureDetailPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {venture.clubFacilities.map((facility, idx) => (
                   <div key={idx} className="flex gap-3 items-start bg-blue-50 p-4 rounded-lg">
-                    <span className="text-blue-600 font-bold shrink-0">•</span>
+                    <span className="text-blue-900 font-bold shrink-0">•</span>
                     <span className="text-gray-700 text-sm sm:text-base">{facility}</span>
                   </div>
                 ))}
@@ -242,7 +242,7 @@ export default function VentureDetailPage() {
                 {venture.distancesFromSite.map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg">
                     <span className="text-gray-700 font-medium">{item.location}</span>
-                    <span className="text-purple-600 font-bold">{item.distance}</span>
+                    <span className="text-blue-900 font-bold">{item.distance}</span>
                   </div>
                 ))}
               </div>
@@ -260,7 +260,7 @@ export default function VentureDetailPage() {
                     <ul className="space-y-2">
                       {section.items.map((item, itemIdx) => (
                         <li key={itemIdx} className="flex gap-2 text-gray-700 text-sm">
-                          <span className="text-purple-600 shrink-0">→</span>
+                          <span className="text-blue-900 shrink-0">→</span>
                           {item}
                         </li>
                       ))}
@@ -278,7 +278,7 @@ export default function VentureDetailPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {venture.itCompanies.map((company, idx) => (
                   <div key={idx} className="flex gap-3 bg-blue-50 p-4 rounded-lg">
-                    <span className="text-blue-600 shrink-0">💼</span>
+                    <span className="text-blue-900 shrink-0">💼</span>
                     <span className="text-gray-700 text-sm">{company}</span>
                   </div>
                 ))}
@@ -298,18 +298,18 @@ export default function VentureDetailPage() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm mb-1">Email</p>
-                  <a href={`mailto:${venture.contact.email}`} className="text-purple-400 hover:text-purple-300">{venture.contact.email}</a>
+                  <a href={`mailto:${venture.contact.email}`} className="text-blue-400 hover:text-blue-300">{venture.contact.email}</a>
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm mb-1">Website</p>
-                  <a href={`https://${venture.contact.website}`} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">{venture.contact.website}</a>
+                  <a href={`https://${venture.contact.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">{venture.contact.website}</a>
                 </div>
               </div>
             </div>
           )}
 
           {/* Price CTA */}
-          <div className="mt-12 bg-gradient-to-r from-blue-900 to-purple-900 text-white p-6 sm:p-8 rounded-xl">
+          <div className="mt-12 bg-gradient-to-r from-blue-900 to-blue-900 text-white p-6 sm:p-8 rounded-xl">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
               <div>
                 <p className="text-gray-300 text-sm mb-2">Starting Price</p>
