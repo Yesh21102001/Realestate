@@ -229,24 +229,38 @@ export default function HomePage() {
       </section>
 
       {/* Steps Section */}
-      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-12 sm:mb-16 lg:mb-20 text-center">
-            Find Your Dream Home in 3 Easy Steps
-          </h2>
+          <div className="text-center mb-16 sm:mb-20 lg:mb-24">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Your Path to the Perfect Home
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+              We've simplified the home buying process into three straightforward steps
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { num: 1, title: 'Search & Browse', desc: 'Search for properties matching your criteria' },
-              { num: 2, title: 'Choose Your Property', desc: 'Compare & select your favorite home' },
-              { num: 3, title: 'Move In & Enjoy', desc: 'Complete process and move in' }
+              { num: 1, icon: '🔍', title: 'Search Properties', desc: 'Browse through our extensive collection of premium properties' },
+              { num: 2, icon: '❤️', title: 'Find Your Match', desc: 'Discover the perfect property that matches your dreams' },
+              { num: 3, icon: '🏠', title: 'Move In', desc: 'Complete the process and start your new life' }
             ].map((step) => (
-              <div key={step.num} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24 bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-full mb-6 sm:mb-8 font-bold text-2xl sm:text-3xl lg:text-4xl shadow-lg">
-                  {step.num}
+              <div key={step.num} className="group">
+                <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 hover:border-blue-900">
+                  {/* Icon & Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="text-5xl">{step.icon}</div>
+                    <span className="text-4xl font-bold text-blue-900 opacity-20 group-hover:opacity-100 transition-opacity">{step.num}</span>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{step.desc}</p>
+
+                  {/* Arrow */}
+                  <div className="text-blue-900 font-bold group-hover:translate-x-2 transition-transform">→</div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{step.title}</h3>
-                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-light">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -324,25 +338,6 @@ export default function HomePage() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
-            Ready To Find Your Dream Home?
-          </h2>
-          <p className="text-xs sm:text-sm lg:text-base text-indigo-100 mb-8 sm:mb-10 lg:mb-12 leading-relaxed font-light px-2">
-            Join thousands of satisfied customers who discovered their perfect space with Vizag Yards. Your journey starts here.
-          </p>
-          <button className="px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-4 bg-white text-blue-900 rounded-full font-bold text-xs sm:text-sm lg:text-base hover:bg-gray-100 transition">
-            Get Started Now
-          </button>
         </div>
       </section>
 
