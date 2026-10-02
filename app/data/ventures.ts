@@ -47,7 +47,7 @@ export const ventures: Venture[] = [
     baths: 2,
     sqft: '1,200',
     price: '₹45 Lakh',
-    image: '/images/nexus/GANDIGUNDAM 19-1-2026.pdf',
+    image: '/images/nexus-valley.png',
     description: 'Premium residential community at Nexus Valley featuring modern architecture and amenities designed for contemporary living.',
     features: [
       'Modern architectural design',
@@ -71,7 +71,7 @@ export const ventures: Venture[] = [
     baths: 2,
     sqft: '1,300',
     price: '₹50 Lakh',
-    image: '/images/radian/IMG-20260912-WA0016.jpg',
+    image: '/images/radian-silicon.png',
     gallery: [
       '/images/radian/IMG-20260912-WA0016.jpg',
       '/images/radian/IMG-20260912-WA0017.jpg',
@@ -204,7 +204,7 @@ export const ventures: Venture[] = [
     baths: 2,
     sqft: '1,250 - 1,350',
     price: '₹44 - 48 Lakhs',
-    image: '/images/river-oaks/gate.jpg',
+    image: '/images/river-oaks-grand.png',
     tagline: 'Residential Township at Ramabhadrapuram',
     overview: 'Prakruti Avenues is launching its prestigious new exciting venture RIVER OAKS GRAND Residential Township situated at Ramabhadrapuram, Bobbili, Vizianagaram Dist. The venture has everything to offer in terms of facilities and comfort.',
     siteArea: 'Premium Residential Plots',

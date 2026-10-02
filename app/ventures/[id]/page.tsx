@@ -104,27 +104,6 @@ export default function VentureDetailPage() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      {venture.gallery && venture.gallery.length > 0 && (
-        <section className="px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-28 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12">Project Gallery</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {venture.gallery.map((img, idx) => (
-                <div key={idx} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition duration-300 aspect-square cursor-pointer">
-                  <img
-                    src={img}
-                    alt={`${venture.name} - Image ${idx + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Details Section */}
       <section className="px-4 sm:px-6 lg:px-12 pb-16 sm:pb-20 lg:pb-28">
         <div className="max-w-6xl mx-auto">
