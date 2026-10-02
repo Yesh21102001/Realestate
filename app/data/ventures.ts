@@ -1,5 +1,6 @@
 export interface Venture {
   id: string;
+  slug: string;
   tag: string;
   tagBg: string;
   name: string;
@@ -39,6 +40,7 @@ export interface Venture {
 export const ventures: Venture[] = [
   {
     id: '1',
+    slug: 'nexus-valley',
     tag: 'NEW',
     tagBg: 'bg-green-500',
     name: 'Nexus Valley',
@@ -63,6 +65,7 @@ export const ventures: Venture[] = [
   },
   {
     id: '2',
+    slug: 'radian-silicon-park',
     tag: 'HOT DEAL',
     tagBg: 'bg-red-500',
     name: 'Radian Silicon Park',
@@ -196,6 +199,7 @@ export const ventures: Venture[] = [
   },
   {
     id: '3',
+    slug: 'river-oaks-grand',
     tag: 'NEW',
     tagBg: 'bg-green-500',
     name: 'River Oaks Grand',
@@ -268,4 +272,8 @@ export const ventures: Venture[] = [
 
 export function getVentureById(id: string): Venture | undefined {
   return ventures.find(v => v.id === id);
+}
+
+export function getVentureBySlug(slug: string): Venture | undefined {
+  return ventures.find(v => v.slug === slug);
 }

@@ -141,7 +141,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredVentures.map((prop) => (
-              <Link key={prop.id} href={`/ventures/${prop.id}`} className="group">
+              <Link key={prop.id} href={`/ventures/${prop.slug}`} className="group">
                 <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
                   {/* Image Container */}
                   <div className="relative h-40 bg-gray-300 overflow-hidden">
