@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import SchemaMarkup from './components/SchemaMarkup';
 import { ventures } from './data/ventures';
 import { realEstateAgentSchema, keywordClusters } from './lib/seo';
+import { faqSchema, localBusinessSchema, breadcrumbSchema, aggregateOfferSchema } from './lib/advanced-seo';
 
 export default function HomePage() {
   const navLinks = [
@@ -32,9 +33,17 @@ export default function HomePage() {
     }
   }, []);
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Home', url: 'https://vizagyards.com' },
+  ]);
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
       <SchemaMarkup schema={realEstateAgentSchema} />
+      <SchemaMarkup schema={localBusinessSchema} />
+      <SchemaMarkup schema={faqSchema} />
+      <SchemaMarkup schema={aggregateOfferSchema} />
+      <SchemaMarkup schema={breadcrumbs} />
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}
