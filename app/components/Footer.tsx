@@ -6,15 +6,14 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-400 py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
         <div>
-          <div className="flex items-center gap-2 mb-3 sm:mb-4">
+          <div className="mb-3 sm:mb-4">
             <Image
               src="/logo.png"
               alt="Vizag Yards Logo"
-              width={32}
-              height={32}
+              width={150}
+              height={150}
               className="shrink-0"
             />
-            <span className="font-bold text-white text-sm sm:text-base">Vizag Yards</span>
           </div>
           <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
         </div>

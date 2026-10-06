@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { getVentureById } from '../../data/ventures';
+import { getVentureBySlug } from '../../data/ventures';
 import SchemaMarkup from '../../components/SchemaMarkup';
 import { useParams } from 'next/navigation';
 import { propertySchema, siteConfig, keywordClusters } from '../../lib/seo';
 
 export default function VentureDetailPage() {
   const params = useParams();
-  const venture = getVentureById(params.id as string);
+  const venture = getVentureBySlug(params.id as string);
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -104,41 +104,44 @@ export default function VentureDetailPage() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      {venture.gallery && venture.gallery.length > 0 && (
-        <section className="px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-28 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12">Project Gallery</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {venture.gallery.map((img, idx) => (
-                <div key={idx} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition duration-300 aspect-square cursor-pointer">
-                  <img
-                    src={img}
-                    alt={`${venture.name} - Image ${idx + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300"></div>
-                </div>
-              ))}
+      {/* Header Section */}
+      <section className="px-4 sm:px-6 lg:px-12 pt-8 sm:pt-10 lg:pt-12 pb-0 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{venture.name}</h1>
+          <div className="flex items-center gap-2 text-gray-600 mb-6">
+            <MapPin className="w-5 h-5 shrink-0" />
+            <span className="text-sm sm:text-base">{venture.loc}</span>
+          </div>
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{venture.description}</p>
+        </div>
+      </section>
+
+      {/* Nexus Valley Special Section */}
+      {venture.slug === 'nexus-valley' && (
+        <section className="px-4 sm:px-6 lg:px-12 bg-white">
+          <div className="max-w-6xl mx-auto pt-0 pb-8 sm:pb-10 lg:pb-12">
+            <div className="text-gray-700 leading-relaxed space-y-4 text-base sm:text-lg">
+              <p>
+                Prakruti Avenues Pvt. Ltd. is launching the prestigious venture <span className="font-bold text-blue-900">NEXUS</span> at Ramapuram Village, Anandapuram Mandal, Visakhapatnam Dist. The venture has every thing to offer in terms of facilities and comforts.
+              </p>
+              <p>
+                It is an offering of smart homes for smart living on every count right from location to features. Highly developed plots close to some of the best areas. Book the plot(s) for owning eco and investor friendly dream home. It is worth while to own plot in <span className="font-bold text-blue-900">NEXUS</span>.
+              </p>
             </div>
           </div>
         </section>
       )}
 
       {/* Details Section */}
-      <section className="px-4 sm:px-6 lg:px-12 pb-16 sm:pb-20 lg:pb-28">
+      <section className="px-4 sm:px-6 lg:px-12 pb-16 sm:pb-20 lg:pb-28 bg-white">
         <div className="max-w-6xl mx-auto">
-          {/* Header Info */}
-          <div className="mb-8 sm:mb-10">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">{venture.name}</h1>
-            {venture.tagline && <p className="text-lg sm:text-xl text-blue-900 font-semibold mb-4">{venture.tagline}</p>}
-            <div className="flex items-center gap-2 text-gray-600 mb-4">
-              <MapPin className="w-5 h-5 shrink-0" />
-              <span className="text-sm sm:text-base">{venture.loc}</span>
+          {/* Tagline and Overview */}
+          {(venture.tagline || venture.overview) && (
+            <div className="mb-8 sm:mb-10">
+              {venture.tagline && <p className="text-lg sm:text-xl text-blue-900 font-semibold mb-4">{venture.tagline}</p>}
+              {venture.overview && <p className="text-gray-700 text-base leading-relaxed italic border-l-4 border-blue-900 pl-4">{venture.overview}</p>}
             </div>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">{venture.description}</p>
-            {venture.overview && <p className="text-gray-700 text-base leading-relaxed italic border-l-4 border-blue-900 pl-4">{venture.overview}</p>}
-          </div>
+          )}
 
           {/* Site Area Info */}
           {(venture.siteArea || venture.projectArea) && (

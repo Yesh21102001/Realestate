@@ -1,5 +1,6 @@
 export interface Venture {
   id: string;
+  slug: string;
   tag: string;
   tagBg: string;
   name: string;
@@ -39,6 +40,7 @@ export interface Venture {
 export const ventures: Venture[] = [
   {
     id: '1',
+    slug: 'nexus-valley',
     tag: 'NEW',
     tagBg: 'bg-green-500',
     name: 'Nexus Valley',
@@ -47,7 +49,7 @@ export const ventures: Venture[] = [
     baths: 2,
     sqft: '1,200',
     price: '₹45 Lakh',
-    image: '/images/nexus/GANDIGUNDAM 19-1-2026.pdf',
+    image: '/images/nexus-valley.png',
     description: 'Premium residential community at Nexus Valley featuring modern architecture and amenities designed for contemporary living.',
     features: [
       'Modern architectural design',
@@ -63,6 +65,7 @@ export const ventures: Venture[] = [
   },
   {
     id: '2',
+    slug: 'radian-silicon-park',
     tag: 'HOT DEAL',
     tagBg: 'bg-red-500',
     name: 'Radian Silicon Park',
@@ -71,7 +74,7 @@ export const ventures: Venture[] = [
     baths: 2,
     sqft: '1,300',
     price: '₹50 Lakh',
-    image: '/images/radian/IMG-20260912-WA0016.jpg',
+    image: '/images/radian-silicon.png',
     gallery: [
       '/images/radian/IMG-20260912-WA0016.jpg',
       '/images/radian/IMG-20260912-WA0017.jpg',
@@ -196,6 +199,7 @@ export const ventures: Venture[] = [
   },
   {
     id: '3',
+    slug: 'river-oaks-grand',
     tag: 'NEW',
     tagBg: 'bg-green-500',
     name: 'River Oaks Grand',
@@ -204,7 +208,7 @@ export const ventures: Venture[] = [
     baths: 2,
     sqft: '1,250 - 1,350',
     price: '₹44 - 48 Lakhs',
-    image: '/images/river-oaks/gate.jpg',
+    image: '/images/river-oaks-grand.png',
     tagline: 'Residential Township at Ramabhadrapuram',
     overview: 'Prakruti Avenues is launching its prestigious new exciting venture RIVER OAKS GRAND Residential Township situated at Ramabhadrapuram, Bobbili, Vizianagaram Dist. The venture has everything to offer in terms of facilities and comfort.',
     siteArea: 'Premium Residential Plots',
@@ -268,4 +272,8 @@ export const ventures: Venture[] = [
 
 export function getVentureById(id: string): Venture | undefined {
   return ventures.find(v => v.id === id);
+}
+
+export function getVentureBySlug(slug: string): Venture | undefined {
+  return ventures.find(v => v.slug === slug);
 }

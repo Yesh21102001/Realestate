@@ -47,14 +47,14 @@ export default function HomePage() {
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}
-      <section className="relative h-[500px] sm:h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/images/Radian_Silcon_images/hero.png)' }}>
+      <section className="relative h-[500px] sm:h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden" style={{ backgroundImage: 'url(/images/vizag-hero.png)' }}>
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
         <div className="relative z-10 px-4 sm:px-6 lg:px-12 max-w-6xl text-center">
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
-            Find your <br /> dream home
+            Connecting you to the <br /> home you love
           </h1>
           <Link href="/ventures" className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-blue-900 rounded-full font-bold text-sm sm:text-base hover:bg-gray-100 transition">
             Explore Ventures
@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* Featured Properties */}
       <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-16">
+          <div className="flex justify-between items-center gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">Featured Properties</h2>
             <a href="/ventures" className="text-blue-900 font-semibold hover:text-blue-800 text-xs sm:text-sm whitespace-nowrap">
               View All Properties →
@@ -150,52 +150,54 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredVentures.map((prop) => (
-              <div key={prop.id} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-                <div className="relative h-48 sm:h-56 lg:h-64 bg-gray-300">
-                  <img
-                    src={prop.image}
-                    alt={prop.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <span className={`absolute top-3 sm:top-4 left-3 sm:left-4 px-2.5 sm:px-3 py-1 text-white text-xs font-bold rounded-full ${prop.tagBg}`}>
-                    {prop.tag}
-                  </span>
-                  <button className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white p-2 sm:p-2.5 rounded-full hover:bg-gray-100 transition shadow-md">
-                    <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
-                  </button>
+              <Link key={prop.id} href={`/ventures/${prop.slug}`} className="group">
+                <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                  {/* Image Container */}
+                  <div className="relative h-40 bg-gray-300 overflow-hidden">
+                    <img
+                      src={prop.image}
+                      alt={prop.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+
+                    {/* Tag */}
+                    <span className={`absolute top-2 left-2 px-2 py-1 text-white text-xs font-bold rounded-full ${prop.tagBg}`}>
+                      {prop.tag}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4">
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-900 transition">{prop.name}</h3>
+
+                    {/* Location */}
+                    <div className="flex items-center gap-1 text-gray-600 text-xs mb-3">
+                      <MapPin className="w-3 h-3 shrink-0" />
+                      <span className="truncate">{prop.loc}</span>
+                    </div>
+
+                    {/* Stats in horizontal layout */}
+                    <div className="flex justify-between items-center text-xs mb-3 pb-3 border-b border-gray-200">
+                      <div className="text-center">
+                        <p className="font-bold text-gray-900">{prop.beds}</p>
+                        <p className="text-gray-600 text-xs">Beds</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-bold text-gray-900">{prop.baths}</p>
+                        <p className="text-gray-600 text-xs">Baths</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-bold text-gray-900">{prop.sqft}</p>
+                        <p className="text-gray-600 text-xs">Sqft</p>
+                      </div>
+                    </div>
+
+                    {/* Price */}
+                    <span className="text-lg font-bold text-blue-900">{prop.price}</span>
+                  </div>
                 </div>
-
-                <div className="p-4 sm:p-6">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{prop.name}</h3>
-                  <div className="flex items-center gap-2 text-gray-600 text-xs sm:text-sm mb-5 sm:mb-6">
-                    <MapPin className="w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0" />
-                    <span className="truncate">{prop.loc}</span>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-3 sm:gap-4 py-4 sm:py-5 lg:py-6 border-y border-gray-200 mb-4 sm:mb-5 lg:mb-6 text-xs sm:text-sm">
-                    <div className="text-center">
-                      <p className="font-bold text-gray-900">{prop.beds}</p>
-                      <p className="text-gray-600 text-xs">Beds</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="font-bold text-gray-900">{prop.baths}</p>
-                      <p className="text-gray-600 text-xs">Baths</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="font-bold text-gray-900">{prop.sqft}</p>
-                      <p className="text-gray-600 text-xs">Sqft</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 sm:mb-5 lg:mb-6">
-                    <span className="text-xl sm:text-2xl font-bold text-gray-900">{prop.price}</span>
-                  </div>
-
-                  <Link href={`/ventures/${prop.id}`} className="block w-full py-2.5 sm:py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition text-xs sm:text-sm text-center">
-                    Learn More
-                  </Link>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -236,24 +238,38 @@ export default function HomePage() {
       </section>
 
       {/* Steps Section */}
-      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-gray-50">
+      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-12 sm:mb-16 lg:mb-20 text-center">
-            Find Your Dream Home in 3 Easy Steps
-          </h2>
+          <div className="text-center mb-16 sm:mb-20 lg:mb-24">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Your Path to the Perfect Home
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+              We've simplified the home buying process into three straightforward steps
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { num: 1, title: 'Search & Browse', desc: 'Search for properties matching your criteria' },
-              { num: 2, title: 'Choose Your Property', desc: 'Compare & select your favorite home' },
-              { num: 3, title: 'Move In & Enjoy', desc: 'Complete process and move in' }
+              { num: 1, icon: '🔍', title: 'Search Properties', desc: 'Browse through our extensive collection of premium properties' },
+              { num: 2, icon: '❤️', title: 'Find Your Match', desc: 'Discover the perfect property that matches your dreams' },
+              { num: 3, icon: '🏠', title: 'Move In', desc: 'Complete the process and start your new life' }
             ].map((step) => (
-              <div key={step.num} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24 bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-full mb-6 sm:mb-8 font-bold text-2xl sm:text-3xl lg:text-4xl shadow-lg">
-                  {step.num}
+              <div key={step.num} className="group">
+                <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 hover:border-blue-900">
+                  {/* Icon & Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="text-5xl">{step.icon}</div>
+                    <span className="text-4xl font-bold text-blue-900 opacity-20 group-hover:opacity-100 transition-opacity">{step.num}</span>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{step.desc}</p>
+
+                  {/* Arrow */}
+                  <div className="text-blue-900 font-bold group-hover:translate-x-2 transition-transform">→</div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{step.title}</h3>
-                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-light">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -331,25 +347,6 @@ export default function HomePage() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
-            Ready To Find Your Dream Home?
-          </h2>
-          <p className="text-xs sm:text-sm lg:text-base text-indigo-100 mb-8 sm:mb-10 lg:mb-12 leading-relaxed font-light px-2">
-            Join thousands of satisfied customers who discovered their perfect space with Vizag Yards. Your journey starts here.
-          </p>
-          <button className="px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-4 bg-white text-blue-900 rounded-full font-bold text-xs sm:text-sm lg:text-base hover:bg-gray-100 transition">
-            Get Started Now
-          </button>
         </div>
       </section>
 
