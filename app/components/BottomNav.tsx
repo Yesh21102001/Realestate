@@ -21,7 +21,7 @@ export default function BottomNav() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl lg:hidden z-40">
+    <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-200 bg-white/95 shadow-2xl backdrop-blur-md lg:hidden">
       <div className="flex justify-around items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -33,8 +33,8 @@ export default function BottomNav() {
               href={item.href}
               className={`flex-1 flex flex-col items-center justify-center py-3 px-2 transition-colors duration-200 ${
                 active
-                  ? 'text-blue-900 border-t-2 border-blue-900'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'border-t-2 border-blue-900 text-blue-900'
+                  : 'text-gray-600 hover:text-blue-900'
               }`}
             >
               <Icon className="w-5 h-5 sm:w-6 sm:h-6 mb-1" />

@@ -20,7 +20,7 @@ export default function Header({ navLinks }: HeaderProps) {
   const [contactFormOpen, setContactFormOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md">
       <div className="w-full px-4 py-3 sm:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -40,7 +40,7 @@ export default function Header({ navLinks }: HeaderProps) {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-gray-600 hover:text-blue-900 transition whitespace-nowrap"
+                className="whitespace-nowrap text-gray-600 transition hover:text-blue-900"
               >
                 {link.label}
               </a>
@@ -51,7 +51,7 @@ export default function Header({ navLinks }: HeaderProps) {
           <div className="flex gap-2 sm:gap-4 items-center">
             <button
               onClick={() => setContactFormOpen(true)}
-              className="hidden sm:block px-4 sm:px-6 py-2 bg-blue-900 text-white rounded-full text-xs sm:text-sm font-semibold hover:bg-blue-800 transition"
+              className="hidden rounded-sm bg-blue-900 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-blue-800 sm:block sm:px-6 sm:text-sm"
             >
               Contact Us
             </button>
@@ -68,20 +68,20 @@ export default function Header({ navLinks }: HeaderProps) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+          <nav className="mt-4 border-t border-gray-100 pb-4 pt-4 lg:hidden">
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-600 hover:text-blue-900 transition text-sm font-medium py-2"
+                  className="py-2 text-sm font-medium text-gray-600 transition hover:text-blue-900"
                 >
                   {link.label}
                 </a>
               ))}
               <button
                 onClick={() => setContactFormOpen(true)}
-                className="w-full sm:hidden mt-2 px-4 py-2.5 bg-blue-900 text-white rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+                className="mt-2 w-full rounded-sm bg-blue-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800 sm:hidden"
               >
                 Contact Us
               </button>
