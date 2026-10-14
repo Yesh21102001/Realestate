@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Breadcrumbs from '../components/Breadcrumbs';
 import SchemaMarkup from '../components/SchemaMarkup';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { organizationSchema, keywordClusters } from '../lib/seo';
@@ -55,6 +56,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
+          <Breadcrumbs currentPage="Contact" />
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Get In Touch</h1>
           <p className="text-lg sm:text-xl text-indigo-100">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
         </div>

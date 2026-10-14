@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ventures } from '../data/ventures';
 
 export default function Footer() {
   return (
     <footer className="bg-gray-900 px-4 py-12 text-gray-300 sm:px-6 sm:py-14 lg:px-12 lg:py-16">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8 mb-8 sm:mb-10 lg:mb-12">
         <div>
           <div className="mb-3 sm:mb-4">
             <Image
@@ -18,11 +19,21 @@ export default function Footer() {
           <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
         </div>
         <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Navigation</h4>
+          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Explore</h4>
           <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
             <li><Link href="/" className="hover:text-white transition font-light">Home</Link></li>
-            <li><Link href="/ventures" className="hover:text-white transition font-light">Ventures</Link></li>
             <li><Link href="/about" className="hover:text-white transition font-light">About Us</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Ventures</h4>
+          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+            {ventures.map((venture) => (
+              <li key={venture.id}>
+                <Link href={`/ventures/${venture.slug}`} className="font-light transition hover:text-white">{venture.name}</Link>
+              </li>
+            ))}
+            <li><Link href="/ventures" className="font-light text-blue-400 transition hover:text-blue-300">View all ventures</Link></li>
           </ul>
         </div>
         <div>
@@ -35,9 +46,9 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Contact</h4>
           <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="mailto:info@prakrtiavenues.com" className="hover:text-white transition font-light">info@prakrtiavenues.com</a></li>
-            <li><a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="hover:text-white transition font-light">+91 8790388887 (WhatsApp)</a></li>
-            <li><a href="https://vizagyards.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition font-light">vizagyards.com</a></li>
+            <li><a href="mailto:info@prakrtiavenues.com" className="font-light transition hover:text-white">info@prakrtiavenues.com</a></li>
+            <li><a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="font-light transition hover:text-white">+91 8790388887 (WhatsApp)</a></li>
+            <li><a href="https://vizagyards.com" target="_blank" rel="noopener noreferrer" className="font-light transition hover:text-white">vizagyards.com</a></li>
           </ul>
         </div>
       </div>

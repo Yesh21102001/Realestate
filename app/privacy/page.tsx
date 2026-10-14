@@ -2,6 +2,7 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export default function PrivacyPage() {
   const navLinks = [
@@ -19,6 +20,7 @@ export default function PrivacyPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
+          <Breadcrumbs currentPage="Privacy Policy" />
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Privacy Policy</h1>
           <p className="text-lg sm:text-xl text-indigo-100">We value your privacy and are committed to protecting your personal data</p>
         </div>
