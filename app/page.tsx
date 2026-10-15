@@ -57,16 +57,16 @@ export default function HomePage() {
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}
-      <section className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-[#172554] sm:min-h-[720px] lg:min-h-[790px]" style={{ backgroundImage: 'url(/images/vizag-hero.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative isolate flex min-h-[700px] flex-col items-stretch overflow-hidden bg-[#172554] sm:min-h-[720px] sm:flex-row sm:items-center lg:min-h-[790px]" style={{ backgroundImage: 'url(/images/vizag-hero.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0f172a]/90 via-[#0f172a]/65 to-[#0f172a]/15" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0f172a]/45 via-transparent to-black/10" />
-        <div className="mx-auto w-full max-w-7xl px-5 pb-24 pt-20 sm:px-8 sm:pb-28 lg:px-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-5 py-10 sm:flex-none sm:px-8 sm:pb-28 sm:pt-20 lg:px-12">
           <div className="max-w-3xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm sm:text-xs">
               <Sparkles className="h-4 w-4 text-blue-200" />
               Thoughtfully chosen plots in Vizag
             </div>
-            <h1 className="mb-6 max-w-3xl text-5xl font-medium leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mb-6 max-w-3xl text-[2.5rem] font-medium leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
               Find a place to <span className="font-normal italic text-blue-200">put down roots.</span>
             </h1>
             <p className="mb-9 max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
@@ -82,7 +82,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/15 bg-[#172554]/75 backdrop-blur-md">
+        <div className="relative mt-auto border-t border-white/15 bg-[#172554]/75 backdrop-blur-md sm:absolute sm:bottom-0 sm:left-0 sm:right-0">
           <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/15 px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
             {[
               ['Curated locations', 'Across Vizag & Bhogapuram'],

@@ -85,7 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="canonical" href={siteConfig.url} />
         <SchemaMarkup schema={organizationSchema} />
       </head>
-      <body className="min-h-full flex flex-col pb-24 lg:pb-0">
+      <body className="min-h-full flex flex-col pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-0">
         {children}
         <BottomNav />
         <FloatingCallButton />
