@@ -1,59 +1,65 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ventures } from '../data/ventures';
+import { ButtonLink, container } from './ui';
+
+const headingClass = 'mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-light';
+const linkClass = 'text-sm text-white/70 transition hover:text-gold-light';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 px-4 py-12 text-gray-300 sm:px-6 sm:py-14 lg:px-12 lg:py-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8 mb-8 sm:mb-10 lg:mb-12">
-        <div>
-          <div className="mb-3 sm:mb-4">
-            <Image
-              src="/logo.png"
-              alt="Vizag Yards Logo"
-              width={150}
-              height={150}
-              className="shrink-0"
-            />
+    <footer className="bg-ink pb-10 pt-16 text-white/70 sm:pt-20">
+      <div className={container}>
+        <div className="mb-14 flex flex-col justify-between gap-8 border-b border-white/10 pb-14 lg:flex-row lg:items-end">
+          <p className="max-w-xl font-serif text-3xl leading-snug text-white sm:text-4xl">
+            Connecting you to the <span className="italic text-gold-light">home you love.</span>
+          </p>
+          <ButtonLink href="/contact" variant="textLight" className="self-start lg:self-auto">Speak with an advisor</ButtonLink>
+        </div>
+
+        <div className="mb-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
+          <div>
+            <Image src="/logo.png" alt="Vizag Yards Logo" width={150} height={150} className="mb-4 shrink-0" />
+            <p className="text-sm">Your trusted real estate partner.</p>
           </div>
-          <p className="text-xs sm:text-sm font-light">Your trusted real estate partner.</p>
+          <div>
+            <h4 className={headingClass}>Explore</h4>
+            <ul className="space-y-3">
+              <li><Link href="/" className={linkClass}>Home</Link></li>
+              <li><Link href="/about" className={linkClass}>About Us</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className={headingClass}>Ventures</h4>
+            <ul className="space-y-3">
+              {ventures.map((venture) => (
+                <li key={venture.id}>
+                  <Link href={`/ventures/${venture.slug}`} className={linkClass}>{venture.name}</Link>
+                </li>
+              ))}
+              <li><Link href="/ventures" className="text-sm italic text-gold-light transition hover:text-white">View all ventures</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className={headingClass}>Support</h4>
+            <ul className="space-y-3">
+              <li><Link href="/contact" className={linkClass}>Contact Us</Link></li>
+              <li><Link href="/privacy" className={linkClass}>Privacy Policy</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className={headingClass}>Contact</h4>
+            <ul className="space-y-3">
+              <li><a href="mailto:info@prakrtiavenues.com" className={linkClass}>info@prakrtiavenues.com</a></li>
+              <li><a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className={linkClass}>+91 8790388887 (WhatsApp)</a></li>
+              <li><a href="https://vizagyards.com" target="_blank" rel="noopener noreferrer" className={linkClass}>vizagyards.com</a></li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Explore</h4>
-          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><Link href="/" className="hover:text-white transition font-light">Home</Link></li>
-            <li><Link href="/about" className="hover:text-white transition font-light">About Us</Link></li>
-          </ul>
+
+        <div className="border-t border-white/10 pt-8 text-center text-xs text-white/50">
+          <p>&copy; {new Date().getFullYear()} Vizag Yards. All rights reserved. | Design and developed by <a href="https://hosthive.online/" target="_blank" rel="noopener noreferrer" className="font-medium text-gold-light transition hover:text-white">Host Hive</a></p>
         </div>
-        <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Ventures</h4>
-          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            {ventures.map((venture) => (
-              <li key={venture.id}>
-                <Link href={`/ventures/${venture.slug}`} className="font-light transition hover:text-white">{venture.name}</Link>
-              </li>
-            ))}
-            <li><Link href="/ventures" className="font-light text-blue-400 transition hover:text-blue-300">View all ventures</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Support</h4>
-          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><Link href="/contact" className="hover:text-white transition font-light">Contact Us</Link></li>
-            <li><Link href="/privacy" className="hover:text-white transition font-light">Privacy Policy</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm">Contact</h4>
-          <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
-            <li><a href="mailto:info@prakrtiavenues.com" className="font-light transition hover:text-white">info@prakrtiavenues.com</a></li>
-            <li><a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="font-light transition hover:text-white">+91 8790388887 (WhatsApp)</a></li>
-            <li><a href="https://vizagyards.com" target="_blank" rel="noopener noreferrer" className="font-light transition hover:text-white">vizagyards.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-gray-700 pt-6 sm:pt-8 text-center text-xs sm:text-sm font-light">
-        <p>&copy; {new Date().getFullYear()} Vizag Yards. All rights reserved. | Design and developed by <a href="https://hosthive.online/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition font-medium">Host Hive</a></p>
       </div>
     </footer>
   );

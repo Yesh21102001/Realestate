@@ -3,10 +3,14 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import PageHero from '../components/PageHero';
 import SchemaMarkup from '../components/SchemaMarkup';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { organizationSchema, keywordClusters } from '../lib/seo';
+import { Section, buttonClass } from '../components/ui';
+import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { organizationSchema } from '../lib/seo';
+
+const fieldClass = 'w-full border-0 border-b border-gold-line bg-transparent px-0 py-3 text-ink placeholder:text-ink/40 focus:border-navy focus:outline-none focus:ring-0';
+const labelClass = 'mb-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-gold';
 
 export default function ContactPage() {
   const navLinks = [
@@ -48,135 +52,81 @@ export default function ContactPage() {
     alert('Thank you for contacting us! We will get back to you soon.');
   };
 
+  const details = [
+    { icon: Mail, label: 'Email', content: <a href="mailto:info@prakrtiavenues.com" className="transition hover:text-gold">info@prakrtiavenues.com</a> },
+    { icon: Phone, label: 'WhatsApp', content: <a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="transition hover:text-gold">+91 8790388887</a> },
+    {
+      icon: MapPin,
+      label: 'Address',
+      content: (
+        <>
+          Sai Trade Center, 2nd Floor<br />
+          Prakruti Avenue Pvt Ltd<br />
+          Dwaraka Nagar Second Line<br />
+          Visakhapatnam
+        </>
+      ),
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+    <div className="min-h-screen bg-ivory">
       <SchemaMarkup schema={organizationSchema} />
       <Header navLinks={navLinks} />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <Breadcrumbs currentPage="Contact" />
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Get In Touch</h1>
-          <p className="text-lg sm:text-xl text-indigo-100">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-        </div>
-      </section>
+      <PageHero
+        currentPage="Contact"
+        eyebrow="Get in touch"
+        title={<>Let’s begin a <span className="italic text-gold-light">conversation.</span></>}
+        subtitle="We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+      />
 
-      {/* Contact Content */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Contact Info */}
+      <Section>
+        <div className="grid-cols-1 gap-16 lg:grid-cols-[1fr_2fr]">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h2>
-
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <Mail className="w-6 h-6 text-blue-900 shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                  <a href="mailto:info@prakrtiavenues.com" className="text-gray-600 hover:text-blue-900 transition">info@prakrtiavenues.com</a>
+            <h2 className="mb-10 text-3xl font-medium text-ink sm:text-4xl">Contact information</h2>
+            <dl className="border-t border-gold-line">
+              {details.map(({ icon: Icon, label, content }) => (
+                <div key={label} className="flex gap-5 border-b border-gold-line/50 py-6">
+                  <Icon className="mt-1 h-5 w-5 shrink-0 text-gold" strokeWidth={1.5} />
+                  <div>
+                    <dt className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/55">{label}</dt>
+                    <dd className="text-base leading-7 text-ink/90">{content}</dd>
+                  </div>
                 </div>
+              ))}
+            </dl>
+          </div>
+
+          <form onSubmit={handleSubmit} className="bg-white p-8 sm:p-12">
+            <p className="mb-10 font-serif text-2xl text-ink sm:text-3xl">Send us a message</p>
+            <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className={labelClass}>Full name</label>
+                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className={fieldClass} placeholder="Your name" />
               </div>
-
-              <div className="flex gap-4">
-                <Phone className="w-6 h-6 text-blue-900 shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">WhatsApp</h3>
-                  <a href="https://wa.me/918790388887" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-900 transition">+91 8790388887</a>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <MapPin className="w-6 h-6 text-blue-900 shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Address</h3>
-                  <p className="text-gray-600">Sai Trade Center, 2nd Floor</p>
-                  <p className="text-gray-600">Prakruti Avenue Pvt Ltd</p>
-                  <p className="text-gray-600">Dwaraka Nagar Second Line</p>
-                  <p className="text-gray-600">Visakhapatnam</p>
-                </div>
+              <div>
+                <label htmlFor="email" className={labelClass}>Email</label>
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className={fieldClass} placeholder="you@example.com" />
               </div>
             </div>
-          </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-gray-50 p-8 rounded-2xl">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-                    placeholder="John Doe"
-                  />
-                </div>
+            <div className="mb-8">
+              <label htmlFor="phone" className={labelClass}>Phone number</label>
+              <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className={fieldClass} placeholder="+91 98765 43210" />
+            </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
+            <div className="mb-10">
+              <label htmlFor="message" className={labelClass}>Message</label>
+              <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} className={`${fieldClass} resize-none`} placeholder="Tell us how we can help you..." />
+            </div>
 
-              <div className="mb-6">
-                <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-                  placeholder="+1 (555) 123-4567"
-                />
-              </div>
-
-              <div className="mb-8">
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 resize-none"
-                  placeholder="Tell us how we can help you..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+            <button type="submit" className={buttonClass('primary')}>
+              Send message <ArrowRight className="h-4 w-4" />
+            </button>
+          </form>
         </div>
-      </section>
+      </Section>
 
       <Footer />
     </div>

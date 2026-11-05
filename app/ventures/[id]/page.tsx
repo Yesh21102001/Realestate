@@ -1,14 +1,29 @@
 'use client';
 
-import { MapPin, Heart, ChevronLeft } from 'lucide-react';
+import { ChevronLeft, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { getVentureBySlug } from '../../data/ventures';
 import SchemaMarkup from '../../components/SchemaMarkup';
+import { ButtonLink, Eyebrow, Section, SectionHeader, container } from '../../components/ui';
 import { useParams } from 'next/navigation';
-import { propertySchema, siteConfig, keywordClusters } from '../../lib/seo';
+import { propertySchema, keywordClusters } from '../../lib/seo';
+
+function GoldList({ items, columns = 2 }: { items: string[]; columns?: 1 | 2 }) {
+  return (
+    <ul className={`grid grid-cols-1 gap-x-10 ${columns === 2 ? 'sm:grid-cols-2' : ''}`}>
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-4 border-b border-gold-line/40 py-4 text-sm leading-6 text-ink/80 sm:text-base">
+          <span className="mt-2.5 h-px w-4 shrink-0 bg-gold" />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function VentureDetailPage() {
   const params = useParams();
@@ -51,13 +66,13 @@ export default function VentureDetailPage() {
 
   if (!venture) {
     return (
-      <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+      <div className="min-h-screen bg-ivory">
         <Header navLinks={navLinks} />
-        <div className="flex items-center justify-center min-h-[60vh] px-4">
+        <div className="flex min-h-[60vh] items-center justify-center px-5">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Venture not found</h1>
-            <Link href="/ventures" className="text-blue-900 hover:text-blue-800 font-semibold">
-              Back to Ventures
+            <h1 className="mb-4 text-4xl font-medium text-ink">Venture not found</h1>
+            <Link href="/ventures" className="border-b border-gold pb-0.5 text-sm font-semibold text-navy">
+              Back to ventures
             </Link>
           </div>
         </div>
@@ -67,302 +82,180 @@ export default function VentureDetailPage() {
   }
 
   const schema = propertySchema(venture);
+  const whatsappUrl = `https://wa.me/918790388887?text=${encodeURIComponent(`Hi, I am interested in ${venture.name}. Please share more details.`)}`;
+
+  const sections: { title: string; content: ReactNode }[] = [];
+  if (venture.features?.length) {
+    sections.push({ title: 'Project highlights', content: <GoldList items={venture.features} /> });
+  }
+  if (venture.clubFacilities?.length) {
+    sections.push({ title: 'Club facilities', content: <GoldList items={venture.clubFacilities} /> });
+  }
+  if (venture.lakesideFacilities?.length) {
+    sections.push({ title: 'Lakeside living', content: <GoldList items={venture.lakesideFacilities} /> });
+  }
+  if (venture.wellnessFacilities?.length) {
+    sections.push({ title: 'Wellness & relaxation', content: <GoldList items={venture.wellnessFacilities} /> });
+  }
+  if (venture.amenities?.length) {
+    sections.push({
+      title: 'Amenities',
+      content: (
+        <div className="flex flex-wrap gap-3">
+          {venture.amenities.map((amenity) => (
+            <span key={amenity} className="border border-gold-line px-4 py-2 text-sm text-ink/80">{amenity}</span>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (venture.locationBenefits) {
+    sections.push({
+      title: 'Gateway to growth',
+      content: <p className="max-w-3xl font-serif text-xl leading-relaxed text-ink/90 sm:text-2xl">{venture.locationBenefits}</p>,
+    });
+  }
+  if (venture.keyHighlights?.length) {
+    sections.push({ title: 'Key highlights', content: <GoldList items={venture.keyHighlights} /> });
+  }
+  if (venture.distancesFromSite?.length) {
+    sections.push({
+      title: 'Distances from site',
+      content: (
+        <dl className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
+          {venture.distancesFromSite.map((item) => (
+            <div key={item.location} className="flex items-baseline justify-between gap-4 border-b border-gold-line/40 py-4">
+              <dt className="text-sm text-ink/80 sm:text-base">{item.location}</dt>
+              <dd className="shrink-0 font-serif text-xl text-gold">{item.distance}</dd>
+            </div>
+          ))}
+        </dl>
+      ),
+    });
+  }
+  if (venture.educational?.length) {
+    sections.push({
+      title: 'Nearby facilities',
+      content: (
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          {venture.educational.map((group) => (
+            <div key={group.category}>
+              <h3 className="mb-2 font-serif text-2xl text-ink">{group.category}</h3>
+              <GoldList items={group.items} columns={1} />
+            </div>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (venture.itCompanies?.length) {
+    sections.push({ title: 'Nearby IT companies', content: <GoldList items={venture.itCompanies} /> });
+  }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+    <div className="min-h-screen bg-ivory">
       <SchemaMarkup schema={schema} />
       <Header navLinks={navLinks} />
 
-      {/* Back Button */}
-      <div className="px-4 sm:px-6 lg:px-12 py-4 sm:py-6">
-        <div className="max-w-6xl mx-auto">
-          <Link href="/ventures" className="inline-flex items-center gap-2 text-blue-900 hover:text-blue-800 font-semibold text-sm mb-4">
-            <ChevronLeft className="w-4 h-4" />
-            Back to Ventures
+      {/* Hero */}
+      <section className="relative isolate flex min-h-[520px] items-end overflow-hidden bg-ink sm:min-h-[620px]">
+        <Image src={venture.image} alt={venture.name} fill priority sizes="100vw" className="-z-10 object-cover" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/40 to-ink/10" />
+        <div className={`w-full pb-12 pt-24 sm:pb-16 ${container}`}>
+          <Link href="/ventures" className="mb-10 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/70 transition hover:text-gold-light">
+            <ChevronLeft className="h-4 w-4" /> All ventures
           </Link>
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="px-4 sm:px-6 lg:px-12 pb-8 sm:pb-12 lg:pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden shadow-xl mb-6 sm:mb-8">
-            <img
-              src={venture.image}
-              alt={venture.name}
-              className="w-full h-96 sm:h-[500px] object-cover"
-            />
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 flex gap-2">
-              <span className={`px-3 sm:px-4 py-1 sm:py-2 text-white text-xs sm:text-sm font-bold rounded-full ${venture.tagBg}`}>
-                {venture.tag}
-              </span>
-            </div>
-            <button className="absolute top-4 sm:top-6 right-4 sm:right-6 bg-white p-3 rounded-full hover:bg-gray-100 transition shadow-md">
-              <Heart className="w-5 sm:w-6 h-5 sm:h-6 text-gray-400" />
-            </button>
+          <Eyebrow onDark>{venture.tag}</Eyebrow>
+          <h1 className="mb-5 text-5xl font-medium leading-[1.02] text-white sm:text-6xl lg:text-7xl">{venture.name}</h1>
+          {venture.tagline && <p className="mb-5 font-serif text-xl italic text-gold-light sm:text-2xl">{venture.tagline}</p>}
+          <div className="flex items-center gap-2 text-sm text-white/80">
+            <MapPin className="h-4 w-4 shrink-0 text-gold-light" />
+            {venture.loc}
           </div>
         </div>
       </section>
 
-      {/* Header Section */}
-      <section className="px-4 sm:px-6 lg:px-12 pt-8 sm:pt-10 lg:pt-12 pb-0 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{venture.name}</h1>
-          <div className="flex items-center gap-2 text-gray-600 mb-6">
-            <MapPin className="w-5 h-5 shrink-0" />
-            <span className="text-sm sm:text-base">{venture.loc}</span>
-          </div>
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{venture.description}</p>
-        </div>
+      {/* Facts strip */}
+      <section className="border-b border-gold-line/50 bg-linen">
+        <dl className={`grid grid-cols-2 lg:grid-cols-4 ${container}`}>
+          {[
+            ['Starting price', venture.price],
+            ['Plot size', `${venture.sqft} sqft`],
+            ['Site area', venture.siteArea],
+            ['Project', venture.projectArea],
+          ]
+            .filter((fact): fact is [string, string] => Boolean(fact[1]))
+            .map(([label, value], idx) => (
+              <div key={label} className={`py-6 sm:py-8 ${idx > 0 ? 'border-l border-gold-line/50 pl-5 sm:pl-8' : ''} ${idx === 2 ? 'max-lg:border-l-0 max-lg:border-t max-lg:pl-0' : ''} ${idx === 3 ? 'max-lg:border-t' : ''}`}>
+                <dt className="mb-2 text-[10px] uppercase tracking-[0.18em] text-ink/55">{label}</dt>
+                <dd className="font-serif text-xl text-ink sm:text-2xl">{value}</dd>
+              </div>
+            ))}
+        </dl>
       </section>
 
-      {/* Nexus Valley Special Section */}
-      {venture.slug === 'nexus-valley' && (
-        <section className="px-4 sm:px-6 lg:px-12 bg-white">
-          <div className="max-w-6xl mx-auto pt-0 pb-8 sm:pb-10 lg:pb-12">
-            <div className="text-gray-700 leading-relaxed space-y-4 text-base sm:text-lg">
-              <p>
-                Prakruti Avenues Pvt. Ltd. is launching the prestigious venture <span className="font-bold text-blue-900">NEXUS</span> at Ramapuram Village, Anandapuram Mandal, Visakhapatnam Dist. The venture has every thing to offer in terms of facilities and comforts.
-              </p>
-              <p>
-                It is an offering of smart homes for smart living on every count right from location to features. Highly developed plots close to some of the best areas. Book the plot(s) for owning eco and investor friendly dream home. It is worth while to own plot in <span className="font-bold text-blue-900">NEXUS</span>.
-              </p>
-            </div>
+      {/* Introduction */}
+      <Section>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+          <div className="self-start">
+            <Eyebrow>About the venture</Eyebrow>
           </div>
-        </section>
-      )}
-
-      {/* Details Section */}
-      <section className="px-4 sm:px-6 lg:px-12 pb-16 sm:pb-20 lg:pb-28 bg-white">
-        <div className="max-w-6xl mx-auto">
-          {/* Tagline and Overview */}
-          {(venture.tagline || venture.overview) && (
-            <div className="mb-8 sm:mb-10">
-              {venture.tagline && <p className="text-lg sm:text-xl text-blue-900 font-semibold mb-4">{venture.tagline}</p>}
-              {venture.overview && <p className="text-gray-700 text-base leading-relaxed italic border-l-4 border-blue-900 pl-4">{venture.overview}</p>}
-            </div>
-          )}
-
-          {/* Site Area Info */}
-          {(venture.siteArea || venture.projectArea) && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 p-6 bg-green-50 rounded-xl">
-              {venture.siteArea && <div>
-                <p className="text-3xl font-bold text-green-700">{venture.siteArea}</p>
-              </div>}
-              {venture.projectArea && <div>
-                <p className="text-3xl font-bold text-green-700">{venture.projectArea}</p>
-              </div>}
-            </div>
-          )}
-
-          {/* Stats */}
-          {venture.beds && (
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 py-6 sm:py-8 border-y border-gray-200 mb-8 sm:mb-10">
-              <div>
-                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{venture.beds}</p>
-                <p className="text-gray-600 text-xs sm:text-sm">Bedrooms</p>
+          <div className="space-y-6">
+            <p className="font-serif text-2xl leading-relaxed text-ink sm:text-3xl">{venture.description}</p>
+            {venture.slug === 'nexus-valley' && (
+              <div className="space-y-4 text-base leading-8 text-ink/80">
+                <p>
+                  Prakruti Avenues Pvt. Ltd. is launching the prestigious venture <span className="font-semibold text-navy">NEXUS</span> at Ramapuram Village, Anandapuram Mandal, Visakhapatnam Dist. The venture has every thing to offer in terms of facilities and comforts.
+                </p>
+                <p>
+                  It is an offering of smart homes for smart living on every count right from location to features. Highly developed plots close to some of the best areas. Book the plot(s) for owning eco and investor friendly dream home. It is worth while to own plot in <span className="font-semibold text-navy">NEXUS</span>.
+                </p>
               </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{venture.baths}</p>
-                <p className="text-gray-600 text-xs sm:text-sm">Bathrooms</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{venture.sqft}</p>
-                <p className="text-gray-600 text-xs sm:text-sm">Sqft</p>
-              </div>
-            </div>
-          )}
+            )}
+            {venture.overview && (
+              <p className="border-l-2 border-gold-line pl-6 text-base italic leading-8 text-ink/80">{venture.overview}</p>
+            )}
+          </div>
+        </div>
+      </Section>
 
-          {/* Project Highlights */}
-          {venture.features && venture.features.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Project Highlights</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {venture.features.map((feature, idx) => (
-                  <div key={idx} className="flex gap-3 items-start">
-                    <span className="text-blue-900 font-bold text-lg shrink-0">✓</span>
-                    <span className="text-gray-700 text-sm sm:text-base">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+      {/* Detail sections */}
+      {sections.map((section, idx) => (
+        <Section key={section.title} tone={idx % 2 === 0 ? 'linen' : 'ivory'}>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
+            <SectionHeader number={idx + 1} title={section.title} className="self-start" />
+            <div>{section.content}</div>
+          </div>
+        </Section>
+      ))}
 
-          {/* Club Facilities */}
-          {venture.clubFacilities && venture.clubFacilities.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Club Facilities</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {venture.clubFacilities.map((facility, idx) => (
-                  <div key={idx} className="flex gap-3 items-start bg-blue-50 p-4 rounded-lg">
-                    <span className="text-blue-900 font-bold shrink-0">•</span>
-                    <span className="text-gray-700 text-sm sm:text-base">{facility}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+      {/* Enquiry */}
+      <Section tone="ink">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <Eyebrow onDark>Starting price</Eyebrow>
+            <p className="mb-8 font-serif text-5xl text-white sm:text-6xl">{venture.price}</p>
+            <ButtonLink href={whatsappUrl} external variant="light">Enquire on WhatsApp</ButtonLink>
+          </div>
 
-          {/* Lakeside Facilities */}
-          {venture.lakesideFacilities && venture.lakesideFacilities.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Lakeside Living</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {venture.lakesideFacilities.map((facility, idx) => (
-                  <div key={idx} className="flex gap-3 items-start bg-cyan-50 p-4 rounded-lg">
-                    <span className="text-cyan-600 font-bold shrink-0">🌊</span>
-                    <span className="text-gray-700 text-sm sm:text-base">{facility}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Wellness Facilities */}
-          {venture.wellnessFacilities && venture.wellnessFacilities.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Wellness & Relaxation</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {venture.wellnessFacilities.map((facility, idx) => (
-                  <div key={idx} className="flex gap-3 items-start bg-indigo-50 p-4 rounded-lg">
-                    <span className="text-indigo-600 font-bold shrink-0">✨</span>
-                    <span className="text-gray-700 text-sm sm:text-base">{facility}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Amenities */}
-          {venture.amenities && venture.amenities.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Amenities</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {venture.amenities.map((amenity, idx) => (
-                  <div key={idx} className="bg-gray-50 p-4 rounded-lg text-center hover:shadow-md transition">
-                    <p className="text-gray-700 font-medium text-sm sm:text-base">{amenity}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Location Benefits */}
-          {venture.locationBenefits && (
-            <div className="mb-10 sm:mb-12 bg-green-50 p-6 sm:p-8 rounded-xl">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Gateway to Growth</h2>
-              <p className="text-gray-700 leading-relaxed">{venture.locationBenefits}</p>
-            </div>
-          )}
-
-          {/* Key Highlights */}
-          {venture.keyHighlights && venture.keyHighlights.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Highlights</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {venture.keyHighlights.map((highlight, idx) => (
-                  <div key={idx} className="flex gap-3 items-start bg-yellow-50 p-4 rounded-lg">
-                    <span className="text-yellow-600 font-bold text-lg shrink-0">★</span>
-                    <span className="text-gray-700 text-sm sm:text-base">{highlight}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Distances From Site */}
-          {venture.distancesFromSite && venture.distancesFromSite.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Distances From Site</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {venture.distancesFromSite.map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg">
-                    <span className="text-gray-700 font-medium">{item.location}</span>
-                    <span className="text-blue-900 font-bold">{item.distance}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Educational & Healthcare */}
-          {venture.educational && venture.educational.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Nearby Facilities</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {venture.educational.map((section, idx) => (
-                  <div key={idx}>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">{section.category}</h3>
-                    <ul className="space-y-2">
-                      {section.items.map((item, itemIdx) => (
-                        <li key={itemIdx} className="flex gap-2 text-gray-700 text-sm">
-                          <span className="text-blue-900 shrink-0">→</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* IT Companies */}
-          {venture.itCompanies && venture.itCompanies.length > 0 && (
-            <div className="mb-10 sm:mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Nearby IT Companies</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {venture.itCompanies.map((company, idx) => (
-                  <div key={idx} className="flex gap-3 bg-blue-50 p-4 rounded-lg">
-                    <span className="text-blue-900 shrink-0">💼</span>
-                    <span className="text-gray-700 text-sm">{company}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-
-          {/* Contact Info */}
           {venture.contact && (
-            <div className="bg-gray-900 text-white p-6 sm:p-8 rounded-xl">
-              <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Address</p>
-                  <p className="text-white">{venture.contact.address}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Email</p>
-                  <a href={`mailto:${venture.contact.email}`} className="text-blue-400 hover:text-blue-300">{venture.contact.email}</a>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Website</p>
-                  <a href={`https://${venture.contact.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">{venture.contact.website}</a>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Price CTA */}
-          <div className="mt-12 bg-gradient-to-r from-blue-900 to-blue-900 text-white p-6 sm:p-8 rounded-xl">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+            <dl className="space-y-6 border-t border-white/15 pt-8 lg:border-l lg:border-t-0 lg:pl-16 lg:pt-0">
               <div>
-                <p className="text-gray-300 text-sm mb-2">Starting Price</p>
-                <p className="text-4xl sm:text-5xl font-bold">{venture.price}</p>
+                <dt className="mb-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Address</dt>
+                <dd className="text-sm leading-6 text-white/85">{venture.contact.address}</dd>
               </div>
-              <a
-                href="https://wa.me/918790388887?text=Hi, I am interested in Radian Silicon Park. Please share more details."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-3 sm:py-4 px-8 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition text-sm sm:text-base flex items-center gap-2"
-              >
-                <span>💬</span> WhatsApp Enquiry
-              </a>
-            </div>
-          </div>
+              <div>
+                <dt className="mb-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Email</dt>
+                <dd><a href={`mailto:${venture.contact.email}`} className="text-sm text-gold-light transition hover:text-white">{venture.contact.email}</a></dd>
+              </div>
+              <div>
+                <dt className="mb-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Website</dt>
+                <dd><a href={`https://${venture.contact.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-gold-light transition hover:text-white">{venture.contact.website}</a></dd>
+              </div>
+            </dl>
+          )}
         </div>
-      </section>
+      </Section>
 
       <Footer />
     </div>

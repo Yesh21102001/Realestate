@@ -158,7 +158,7 @@ export const propertySchema = (property: any) => ({
   '@type': 'Residence',
   name: property.name,
   description: property.description,
-  url: `${siteConfig.url}/ventures/${property.id}`,
+  url: `${siteConfig.url}/ventures/${property.slug}`,
   image: `${siteConfig.url}${property.image}`,
   address: {
     '@type': 'PostalAddress',

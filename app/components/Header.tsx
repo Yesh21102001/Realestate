@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
+import { buttonClass } from './ui';
 
 interface NavLink {
   label: string;
@@ -20,7 +21,7 @@ export default function Header({ navLinks }: HeaderProps) {
   const [contactFormOpen, setContactFormOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-gold-line/40 bg-ivory/95 backdrop-blur-md">
       <div className="w-full px-4 py-3 sm:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -35,12 +36,12 @@ export default function Header({ navLinks }: HeaderProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex gap-6 xl:gap-8 text-xs sm:text-sm font-medium">
+          <nav className="hidden lg:flex gap-8 xl:gap-10 text-[11px] font-semibold uppercase tracking-[0.18em]">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="whitespace-nowrap text-gray-600 transition hover:text-blue-900"
+                className="whitespace-nowrap text-ink/80 transition hover:text-gold"
               >
                 {link.label}
               </a>
@@ -51,7 +52,7 @@ export default function Header({ navLinks }: HeaderProps) {
           <div className="flex gap-2 sm:gap-4 items-center">
             <button
               onClick={() => setContactFormOpen(true)}
-              className="hidden rounded-sm bg-blue-900 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-blue-800 sm:block sm:px-6 sm:text-sm"
+              className={`${buttonClass('primary')} max-sm:hidden`}
             >
               Contact Us
             </button>
@@ -59,7 +60,7 @@ export default function Header({ navLinks }: HeaderProps) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1.5 text-gray-600 hover:text-gray-900"
+              className="lg:hidden p-1.5 text-ink/70 hover:text-ink"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -68,20 +69,20 @@ export default function Header({ navLinks }: HeaderProps) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="mt-4 border-t border-gray-100 pb-4 pt-4 lg:hidden">
+          <nav className="mt-4 border-t border-gold-line/40 pb-4 pt-4 lg:hidden">
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="py-2 text-sm font-medium text-gray-600 transition hover:text-blue-900"
+                  className="border-b border-gold-line/30 py-3 font-serif text-xl text-ink transition hover:text-gold"
                 >
                   {link.label}
                 </a>
               ))}
               <button
                 onClick={() => setContactFormOpen(true)}
-                className="mt-2 w-full rounded-sm bg-blue-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800 sm:hidden"
+                className={`${buttonClass('primary')} mt-2 w-full sm:hidden`}
               >
                 Contact Us
               </button>

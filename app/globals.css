@@ -1,32 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Lexend', ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-cormorant-garamond);
+  --font-serif: var(--font-cormorant-garamond), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-ivory: #FBF8F3;
+  --color-linen: #F3EDE2;
+  --color-ink: #111B33;
+  --color-navy: #172554;
+  --color-gold: #9A7A4C;
+  --color-gold-light: #E2C99A;
+  --color-gold-line: #C9AE84;
+
+  --animate-marquee: marquee 45s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Lexend', sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-cormorant-garamond);
+  font-family: var(--font-serif);
 }

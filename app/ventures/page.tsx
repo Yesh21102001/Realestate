@@ -1,12 +1,15 @@
 'use client';
 
-import { MapPin, Heart } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import PageHero from '../components/PageHero';
 import { ventures } from '../data/ventures';
 import SchemaMarkup from '../components/SchemaMarkup';
+import { Section } from '../components/ui';
 import { keywordClusters } from '../lib/seo';
 
 export default function VenturesPage() {
@@ -43,7 +46,7 @@ export default function VenturesPage() {
         item: {
           '@type': 'Residence',
           name: venture.name,
-          url: `https://vizagyards.com/ventures/${venture.id}`,
+          url: `https://vizagyards.com/ventures/${venture.slug}`,
           image: `https://vizagyards.com${venture.image}`,
           description: venture.description,
           areaServed: venture.loc,
@@ -53,72 +56,76 @@ export default function VenturesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+    <div className="min-h-screen bg-ivory">
       <SchemaMarkup schema={collectiveListingSchema} />
       <Header navLinks={navLinks} />
 
-      {/* Ventures Section */}
-      <section className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 sm:mb-12 lg:mb-16">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">All Ventures</h1>
-            <p className="text-gray-600 text-sm sm:text-base">Explore our complete collection of premium properties and investment opportunities.</p>
+      <PageHero
+        currentPage="Ventures"
+        eyebrow="The collection"
+        title={<>Our ventures, <span className="italic text-gold-light">carefully chosen.</span></>}
+        subtitle="Explore our complete collection of premium properties and investment opportunities."
+      />
+
+      <Section>
+          <div className="mb-10 flex items-end justify-between border-b border-gold-line/50 pb-6 sm:mb-14">
+            <p className="font-serif text-2xl text-ink sm:text-3xl">All ventures</p>
+            <p className="text-xs uppercase tracking-[0.18em] text-gold">{ventures.length} communities</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {ventures.map((venture, idx) => (
-              <Link key={idx} href={`/ventures/${venture.slug}`} className="group">
-                <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-                  {/* Image Container */}
-                  <div className="relative h-40 bg-gray-300 overflow-hidden">
-                    <img
-                      src={venture.image}
-                      alt={venture.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+              <Link key={venture.id} href={`/ventures/${venture.slug}`} className="group flex flex-col bg-white transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_55px_-25px_rgba(23,37,84,0.35)]">
+                <div className="relative h-56 overflow-hidden bg-linen sm:h-64">
+                  <Image
+                    src={venture.image}
+                    alt={venture.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute left-5 top-5 bg-navy px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
+                    {venture.tag}
+                  </span>
+                  <span className="absolute right-5 top-4 font-serif text-3xl italic text-white/90 drop-shadow">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                </div>
 
-                    {/* Tag */}
-                    <span className={`absolute top-2 left-2 px-2 py-1 text-white text-xs font-bold rounded-full ${venture.tagBg}`}>
-                      {venture.tag}
-                    </span>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h2 className="mb-2 font-serif text-2xl text-ink transition group-hover:text-navy">{venture.name}</h2>
+
+                  <div className="mb-5 flex items-center gap-2 text-sm text-ink/70">
+                    <MapPin className="h-4 w-4 shrink-0 text-gold" />
+                    <span className="truncate">{venture.loc}</span>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-4">
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-900 transition">{venture.name}</h3>
-
-                    {/* Location */}
-                    <div className="flex items-center gap-1 text-gray-600 text-xs mb-3">
-                      <MapPin className="w-3 h-3 shrink-0" />
-                      <span className="truncate">{venture.loc}</span>
+                  <div className="mb-5 grid grid-cols-3 border-y border-gold-line/50 py-4">
+                    <div>
+                      <p className="font-semibold text-ink">{venture.beds}</p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-ink/55">Beds</p>
                     </div>
-
-                    {/* Stats in horizontal layout */}
-                    <div className="flex justify-between items-center text-xs mb-3 pb-3 border-b border-gray-200">
-                      <div className="text-center">
-                        <p className="font-bold text-gray-900">{venture.beds}</p>
-                        <p className="text-gray-600 text-xs">Beds</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-bold text-gray-900">{venture.baths}</p>
-                        <p className="text-gray-600 text-xs">Baths</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-bold text-gray-900">{venture.sqft}</p>
-                        <p className="text-gray-600 text-xs">Sqft</p>
-                      </div>
+                    <div>
+                      <p className="font-semibold text-ink">{venture.baths}</p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-ink/55">Baths</p>
                     </div>
+                    <div>
+                      <p className="font-semibold text-ink">{venture.sqft}</p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-ink/55">Sqft</p>
+                    </div>
+                  </div>
 
-                    {/* Price */}
-                    <span className="text-lg font-bold text-blue-900">{venture.price}</span>
+                  <div className="mt-auto flex items-center justify-between">
+                    <span className="font-serif text-xl text-gold">{venture.price}</span>
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-ink/80 transition group-hover:text-navy">
+                      Explore <ArrowUpRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
+      </Section>
 
       <Footer />
     </div>

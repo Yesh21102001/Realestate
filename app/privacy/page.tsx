@@ -2,7 +2,73 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import PageHero from '../components/PageHero';
+import { Section } from '../components/ui';
+
+const sections: { title: string; intro?: string; items?: string[]; body?: string }[] = [
+  {
+    title: 'Introduction',
+    body: 'Vizag Yards ("we," "us," or "our") operates the website and mobile application. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platforms.',
+  },
+  {
+    title: 'Information We Collect',
+    intro: 'We may collect information about you in a variety of ways:',
+    items: [
+      'Information you provide directly (name, email, phone number, address)',
+      'Information automatically collected (browser type, IP address, cookies)',
+      'Information from third parties (payment processors, property data providers)',
+      'Property viewing history and preferences',
+    ],
+  },
+  {
+    title: 'Use of Your Information',
+    intro: 'We use the information we collect to:',
+    items: [
+      'Provide, operate, and maintain our services',
+      'Improve and personalize your experience',
+      'Send promotional communications (with your consent)',
+      'Process transactions and send related information',
+      'Comply with legal obligations',
+      'Prevent fraud and improve security',
+    ],
+  },
+  {
+    title: 'Data Security',
+    body: 'We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.',
+  },
+  {
+    title: 'Sharing Your Information',
+    intro: 'We do not sell, trade, or rent your personal information. We may share information with:',
+    items: [
+      'Service providers who assist in our operations',
+      'Legal authorities when required by law',
+      'Business partners (with your consent)',
+    ],
+  },
+  {
+    title: 'Your Rights',
+    intro: 'Depending on your location, you may have the right to:',
+    items: [
+      'Access your personal data',
+      'Correct inaccurate data',
+      'Request deletion of your data',
+      'Opt-out of marketing communications',
+      'Data portability',
+    ],
+  },
+  {
+    title: 'Cookies',
+    body: 'We use cookies and similar tracking technologies to enhance your experience. You can control cookie settings through your browser preferences.',
+  },
+  {
+    title: 'Third-Party Links',
+    body: 'Our platform may contain links to third-party websites. We are not responsible for the privacy practices of these external sites. Please review their privacy policies before providing any personal information.',
+  },
+  {
+    title: 'Changes to This Policy',
+    body: 'We may update this Privacy Policy from time to time. We will notify you of any changes by posting the updated policy on our platform. Your continued use of our services constitutes acceptance of the updated policy.',
+  },
+];
 
 export default function PrivacyPage() {
   const navLinks = [
@@ -14,128 +80,60 @@ export default function PrivacyPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
+    <div className="min-h-screen bg-ivory">
       <Header navLinks={navLinks} />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <Breadcrumbs currentPage="Privacy Policy" />
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Privacy Policy</h1>
-          <p className="text-lg sm:text-xl text-indigo-100">We value your privacy and are committed to protecting your personal data</p>
-        </div>
-      </section>
+      <PageHero
+        currentPage="Privacy Policy"
+        eyebrow="Your data, respected"
+        title={<>Privacy <span className="italic text-gold-light">policy.</span></>}
+        subtitle="We value your privacy and are committed to protecting your personal data"
+      />
 
-      {/* Content */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="prose prose-lg max-w-none text-gray-600 space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
-              <p>
-                Vizag Yards ("we," "us," or "our") operates the website and mobile application. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platforms.
-              </p>
+      <Section>
+        <div className="mx-auto max-w-4xl">
+          {sections.map((section, idx) => (
+            <div key={section.title} className="grid grid-cols-1 gap-4 border-t border-gold-line/60 py-10 sm:grid-cols-[5rem_1fr] sm:gap-8">
+              <span className="font-serif text-3xl italic text-gold">{String(idx + 1).padStart(2, '0')}</span>
+              <div>
+                <h2 className="mb-4 text-3xl font-medium text-ink">{section.title}</h2>
+                {section.body && <p className="text-base leading-8 text-ink/80">{section.body}</p>}
+                {section.intro && <p className="text-base leading-8 text-ink/80">{section.intro}</p>}
+                {section.items && (
+                  <ul className="mt-4 space-y-3">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex items-start gap-4 text-base leading-7 text-ink/80">
+                        <span className="mt-3.5 h-px w-4 shrink-0 bg-gold" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
+          ))}
 
+          <div className="grid grid-cols-1 gap-4 border-t border-gold-line/60 py-10 sm:grid-cols-[5rem_1fr] sm:gap-8">
+            <span className="font-serif text-3xl italic text-gold">{String(sections.length + 1).padStart(2, '0')}</span>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
-              <p>We may collect information about you in a variety of ways:</p>
-              <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li>Information you provide directly (name, email, phone number, address)</li>
-                <li>Information automatically collected (browser type, IP address, cookies)</li>
-                <li>Information from third parties (payment processors, property data providers)</li>
-                <li>Property viewing history and preferences</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Use of Your Information</h2>
-              <p>We use the information we collect to:</p>
-              <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li>Provide, operate, and maintain our services</li>
-                <li>Improve and personalize your experience</li>
-                <li>Send promotional communications (with your consent)</li>
-                <li>Process transactions and send related information</li>
-                <li>Comply with legal obligations</li>
-                <li>Prevent fraud and improve security</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Data Security</h2>
-              <p>
-                We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Sharing Your Information</h2>
-              <p>
-                We do not sell, trade, or rent your personal information. We may share information with:
-              </p>
-              <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li>Service providers who assist in our operations</li>
-                <li>Legal authorities when required by law</li>
-                <li>Business partners (with your consent)</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Your Rights</h2>
-              <p>
-                Depending on your location, you may have the right to:
-              </p>
-              <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li>Access your personal data</li>
-                <li>Correct inaccurate data</li>
-                <li>Request deletion of your data</li>
-                <li>Opt-out of marketing communications</li>
-                <li>Data portability</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Cookies</h2>
-              <p>
-                We use cookies and similar tracking technologies to enhance your experience. You can control cookie settings through your browser preferences.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Third-Party Links</h2>
-              <p>
-                Our platform may contain links to third-party websites. We are not responsible for the privacy practices of these external sites. Please review their privacy policies before providing any personal information.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Changes to This Policy</h2>
-              <p>
-                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the updated policy on our platform. Your continued use of our services constitutes acceptance of the updated policy.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Contact Us</h2>
-              <p>
+              <h2 className="mb-4 text-3xl font-medium text-ink">Contact Us</h2>
+              <p className="mb-6 text-base leading-8 text-ink/80">
                 If you have questions about this Privacy Policy or our privacy practices, please contact us at:
               </p>
-              <div className="mt-4 bg-gray-50 p-4 rounded-lg">
-                <p className="font-semibold text-gray-900">Vizag Yards Privacy Team</p>
+              <div className="border-l-2 border-gold-line bg-white p-6 text-sm leading-7 text-ink/80">
+                <p className="mb-2 font-serif text-xl text-ink">Vizag Yards Privacy Team</p>
                 <p>Email: info@prakrtiavenues.com</p>
                 <p>Phone: +91 8790388887</p>
                 <p>Address: Sai Trade Center, 2nd Floor, Prakruti Avenue Pvt Ltd, Dwaraka Nagar Second Line, Visakhapatnam</p>
               </div>
             </div>
-
-            <div className="pt-8 border-t border-gray-200">
-              <p className="text-sm text-gray-500">
-                Last Updated: {new Date().getFullYear()}. This privacy policy is effective as of the date last updated and applies to all users of the Vizag Yards platform.
-              </p>
-            </div>
           </div>
+
+          <p className="border-t border-gold-line/60 pt-8 text-sm text-ink/55">
+            Last Updated: {new Date().getFullYear()}. This privacy policy is effective as of the date last updated and applies to all users of the Vizag Yards platform.
+          </p>
         </div>
-      </section>
+      </Section>
 
       <Footer />
     </div>
