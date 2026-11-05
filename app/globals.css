@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: 'Lexend', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-lexend), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-buenard), Georgia, serif;
   --font-display: var(--font-cormorant-garamond);
   --font-serif: var(--font-cormorant-garamond), Georgia, serif;
 }
@@ -31,6 +30,11 @@ body {
   font-family: var(--font-sans);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+@layer base {
+  /* Buenard has no italic; allow slanted italics for accents but never faux bold. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-synthesis: style;
+  }
 }

@@ -1,12 +1,17 @@
-'use client';
-
-import { useEffect } from 'react';
+import type { Metadata } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import SchemaMarkup from '../components/SchemaMarkup';
 import { Section, SectionHeader } from '../components/ui';
-import { organizationSchema, keywordClusters } from '../lib/seo';
+import { breadcrumbSchema, keywordClusters, pageMetadata } from '../lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'About Us – Prakruti Avenues, Visakhapatnam',
+  description: 'Vizag Yards is the real estate brand of Prakruti Avenues, developing approved residential plot ventures across Visakhapatnam, Bhogapuram and Vizianagaram. Our mission, values and story.',
+  path: '/about',
+  keywords: [...keywordClusters.brand, ...keywordClusters.venture.slice(0, 3)],
+});
 
 export default function AboutPage() {
   const navLinks = [
@@ -16,18 +21,6 @@ export default function AboutPage() {
     { label: 'Contact', href: '/contact' },
     { label: 'Privacy Policy', href: '/privacy' }
   ];
-
-  useEffect(() => {
-    document.title = 'About Vizag Yards - Prakruthi Avenues Real Estate in Visakhapatnam';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'About Vizag Yards - Prakruthi Avenues. 35+ years delivering premium approved residential plots in Vizag. VMRDA approved ventures trusted by 2000+ families.');
-    }
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', [...keywordClusters.brand, ...keywordClusters.venture.slice(0, 3)].join(', '));
-    }
-  }, []);
 
   const values = [
     { title: 'Transparency', desc: 'We believe in honest, straightforward communication. All property information is verified and clearly presented.' },
@@ -45,7 +38,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-ivory">
-      <SchemaMarkup schema={organizationSchema} />
+      <SchemaMarkup schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }])} />
       <Header navLinks={navLinks} />
 
       <PageHero
@@ -76,7 +69,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, idx) => (
               <div key={value.title} className={`border-t border-gold-line py-8 sm:pr-8 ${idx > 0 ? 'lg:border-l lg:pl-8' : ''} ${idx % 2 === 1 ? 'sm:border-l sm:pl-8' : ''}`}>
-                <h3 className="mb-3 font-serif text-2xl text-ink">{value.title}</h3>
+                <h3 className="mb-3 text-2xl text-ink">{value.title}</h3>
                 <p className="text-sm leading-7 text-ink/70">{value.desc}</p>
               </div>
             ))}
@@ -112,7 +105,7 @@ export default function AboutPage() {
               <div key={reason.title} className="flex gap-6 border-t border-white/15 py-8">
                 <span className="font-serif text-xl italic text-gold-light">{String(idx + 1).padStart(2, '0')}</span>
                 <div>
-                  <h3 className="mb-2 font-serif text-2xl text-white">{reason.title}</h3>
+                  <h3 className="mb-2 text-2xl text-white">{reason.title}</h3>
                   <p className="text-sm leading-7 text-white/70">{reason.desc}</p>
                 </div>
               </div>

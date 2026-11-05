@@ -1,14 +1,12 @@
-import { FC } from 'react';
-
 interface SchemaMarkupProps {
-  schema: Record<string, any>;
+  schema: object;
 }
 
-export const SchemaMarkup: FC<SchemaMarkupProps> = ({ schema }) => (
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-  />
-);
-
-export default SchemaMarkup;
+export default function SchemaMarkup({ schema }: SchemaMarkupProps) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}
+    />
+  );
+}

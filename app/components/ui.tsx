@@ -21,12 +21,9 @@ export function Section({ tone = 'ivory', className = '', children }: { tone?: T
 }
 
 export function Eyebrow({ children, onDark = false, center = false }: { children: ReactNode; onDark?: boolean; center?: boolean }) {
-  const rule = <span className={`h-px w-10 ${onDark ? 'bg-gold-light' : 'bg-gold-line'}`} />;
   return (
-    <p className={`mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] ${onDark ? 'text-gold-light' : 'text-gold'} ${center ? 'justify-center' : ''}`}>
-      {rule}
+    <p className={`mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] ${onDark ? 'text-gold-light' : 'text-gold'} ${center ? 'text-center' : ''}`}>
       {children}
-      {center && rule}
     </p>
   );
 }
@@ -50,7 +47,7 @@ export function SectionHeader({ eyebrow, number, title, intro, onDark = false, c
         </span>
       )}
       {eyebrow && <Eyebrow onDark={onDark} center={center}>{eyebrow}</Eyebrow>}
-      <h2 className={`text-4xl font-medium leading-tight sm:text-5xl ${onDark ? 'text-white' : 'text-ink'}`}>{title}</h2>
+      <h2 className={`text-4xl leading-tight sm:text-5xl ${onDark ? 'text-white' : 'text-ink'}`}>{title}</h2>
       {intro && (
         <p className={`mt-5 max-w-xl text-base leading-7 ${center ? 'mx-auto' : ''} ${onDark ? 'text-white/70' : 'text-ink/70'}`}>{intro}</p>
       )}

@@ -1,9 +1,16 @@
-'use client';
-
+import type { Metadata } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import { Section } from '../components/ui';
+import SchemaMarkup from '../components/SchemaMarkup';
+import { breadcrumbSchema, pageMetadata } from '../lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Privacy Policy',
+  description: 'How Vizag Yards collects, uses and protects your personal information when you enquire about our plots and ventures in Visakhapatnam.',
+  path: '/privacy',
+});
 
 const sections: { title: string; intro?: string; items?: string[]; body?: string }[] = [
   {
@@ -81,6 +88,7 @@ export default function PrivacyPage() {
 
   return (
     <div className="min-h-screen bg-ivory">
+      <SchemaMarkup schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Privacy Policy', path: '/privacy' }])} />
       <Header navLinks={navLinks} />
 
       <PageHero
@@ -96,7 +104,7 @@ export default function PrivacyPage() {
             <div key={section.title} className="grid grid-cols-1 gap-4 border-t border-gold-line/60 py-10 sm:grid-cols-[5rem_1fr] sm:gap-8">
               <span className="font-serif text-3xl italic text-gold">{String(idx + 1).padStart(2, '0')}</span>
               <div>
-                <h2 className="mb-4 text-3xl font-medium text-ink">{section.title}</h2>
+                <h2 className="mb-4 text-3xl text-ink">{section.title}</h2>
                 {section.body && <p className="text-base leading-8 text-ink/80">{section.body}</p>}
                 {section.intro && <p className="text-base leading-8 text-ink/80">{section.intro}</p>}
                 {section.items && (
@@ -116,7 +124,7 @@ export default function PrivacyPage() {
           <div className="grid grid-cols-1 gap-4 border-t border-gold-line/60 py-10 sm:grid-cols-[5rem_1fr] sm:gap-8">
             <span className="font-serif text-3xl italic text-gold">{String(sections.length + 1).padStart(2, '0')}</span>
             <div>
-              <h2 className="mb-4 text-3xl font-medium text-ink">Contact Us</h2>
+              <h2 className="mb-4 text-3xl text-ink">Contact Us</h2>
               <p className="mb-6 text-base leading-8 text-ink/80">
                 If you have questions about this Privacy Policy or our privacy practices, please contact us at:
               </p>

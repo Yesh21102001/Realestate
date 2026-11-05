@@ -1,16 +1,36 @@
-'use client';
-
 import { ChevronLeft, MapPin } from 'lucide-react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, type ReactNode } from 'react';
+import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { getVentureBySlug } from '../../data/ventures';
+import { getVentureBySlug, ventures } from '../../data/ventures';
 import SchemaMarkup from '../../components/SchemaMarkup';
 import { ButtonLink, Eyebrow, Section, SectionHeader, container } from '../../components/ui';
-import { useParams } from 'next/navigation';
-import { propertySchema, keywordClusters } from '../../lib/seo';
+import { breadcrumbSchema, keywordClusters, pageMetadata, ventureSchema } from '../../lib/seo';
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return ventures.map((venture) => ({ slug: venture.slug }));
+}
+
+export async function generateMetadata(props: PageProps<'/ventures/[slug]'>): Promise<Metadata> {
+  const { slug } = await props.params;
+  const venture = getVentureBySlug(slug);
+  if (!venture) return {};
+  const place = venture.loc.split(',')[0].trim();
+  return pageMetadata({
+    title: `${venture.name}: Plots for Sale in ${place}`,
+    description: `${venture.name} offers residential plots in ${venture.loc}${venture.tagline ? ` – ${venture.tagline}` : ''}. Starting at ${venture.price}. Explore amenities, location and book a site visit with Vizag Yards.`,
+    path: `/ventures/${venture.slug}`,
+    image: venture.image,
+    imageAlt: `${venture.name} entrance, ${venture.loc}`,
+    keywords: [venture.name, `Plots in ${place}`, `Plots for Sale in ${place}`, `Buy Plots in ${place}`, ...keywordClusters.investment.slice(0, 2)],
+  });
+}
 
 function GoldList({ items, columns = 2 }: { items: string[]; columns?: 1 | 2 }) {
   return (
@@ -25,9 +45,10 @@ function GoldList({ items, columns = 2 }: { items: string[]; columns?: 1 | 2 }) 
   );
 }
 
-export default function VentureDetailPage() {
-  const params = useParams();
-  const venture = getVentureBySlug(params.id as string);
+export default async function VentureDetailPage(props: PageProps<'/ventures/[slug]'>) {
+  const { slug } = await props.params;
+  const venture = getVentureBySlug(slug);
+  if (!venture) notFound();
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -37,51 +58,6 @@ export default function VentureDetailPage() {
     { label: 'Privacy Policy', href: '/privacy' }
   ];
 
-  useEffect(() => {
-    if (venture) {
-      const locationKeyword = venture.name.includes('Radian') ? 'Bhogapuram' : venture.loc;
-      document.title = `${venture.name} - Buy Plots in ${locationKeyword} | Vizag Yards`;
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute(
-          'content',
-          `${venture.name} - Premium residential plots in ${venture.loc}. ${venture.description} Approved plots with ₹${venture.price} price. Best investment opportunity.`
-        );
-      }
-      const metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (metaKeywords) {
-        const ventureKeywords = [
-          `${venture.name}`,
-          `Plots in ${locationKeyword}`,
-          `Plots for Sale in ${locationKeyword}`,
-          `Buy Plots in ${locationKeyword}`,
-          ...keywordClusters.investment.slice(0, 2),
-          'VMRDA approved plots',
-          'Gated community plots',
-        ];
-        metaKeywords.setAttribute('content', ventureKeywords.join(', '));
-      }
-    }
-  }, [venture]);
-
-  if (!venture) {
-    return (
-      <div className="min-h-screen bg-ivory">
-        <Header navLinks={navLinks} />
-        <div className="flex min-h-[60vh] items-center justify-center px-5">
-          <div className="text-center">
-            <h1 className="mb-4 text-4xl font-medium text-ink">Venture not found</h1>
-            <Link href="/ventures" className="border-b border-gold pb-0.5 text-sm font-semibold text-navy">
-              Back to ventures
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  const schema = propertySchema(venture);
   const whatsappUrl = `https://wa.me/918790388887?text=${encodeURIComponent(`Hi, I am interested in ${venture.name}. Please share more details.`)}`;
 
   const sections: { title: string; content: ReactNode }[] = [];
@@ -140,7 +116,7 @@ export default function VentureDetailPage() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {venture.educational.map((group) => (
             <div key={group.category}>
-              <h3 className="mb-2 font-serif text-2xl text-ink">{group.category}</h3>
+              <h3 className="mb-2 text-2xl text-ink">{group.category}</h3>
               <GoldList items={group.items} columns={1} />
             </div>
           ))}
@@ -154,7 +130,8 @@ export default function VentureDetailPage() {
 
   return (
     <div className="min-h-screen bg-ivory">
-      <SchemaMarkup schema={schema} />
+      <SchemaMarkup schema={ventureSchema(venture)} />
+      <SchemaMarkup schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Ventures', path: '/ventures' }, { name: venture.name, path: `/ventures/${venture.slug}` }])} />
       <Header navLinks={navLinks} />
 
       {/* Hero */}
@@ -166,7 +143,7 @@ export default function VentureDetailPage() {
             <ChevronLeft className="h-4 w-4" /> All ventures
           </Link>
           <Eyebrow onDark>{venture.tag}</Eyebrow>
-          <h1 className="mb-5 text-5xl font-medium leading-[1.02] text-white sm:text-6xl lg:text-7xl">{venture.name}</h1>
+          <h1 className="mb-5 text-5xl leading-[1.02] text-white sm:text-6xl lg:text-7xl">{venture.name}</h1>
           {venture.tagline && <p className="mb-5 font-serif text-xl italic text-gold-light sm:text-2xl">{venture.tagline}</p>}
           <div className="flex items-center gap-2 text-sm text-white/80">
             <MapPin className="h-4 w-4 shrink-0 text-gold-light" />

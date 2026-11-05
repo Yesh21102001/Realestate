@@ -1,24 +1,29 @@
-'use client';
-
 import {
   ArrowUpRight,
   BadgeCheck,
   Clock3,
   MapPin,
   ShieldCheck,
-  Sparkles,
   Wallet,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import type { Metadata } from 'next';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SchemaMarkup from './components/SchemaMarkup';
-import { Accent, ButtonLink, Section, SectionHeader, container } from './components/ui';
+import { Accent, ButtonLink, Eyebrow, Section, SectionHeader, container } from './components/ui';
 import { ventures } from './data/ventures';
-import { realEstateAgentSchema, keywordClusters } from './lib/seo';
-import { faqSchema, localBusinessSchema, breadcrumbSchema, aggregateOfferSchema } from './lib/advanced-seo';
+import { faqs } from './data/faqs';
+import { faqPageSchema, keywordClusters, pageMetadata } from './lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Vizag Yards | Plots for Sale in Vizag & Visakhapatnam',
+  absoluteTitle: true,
+  description: 'Buy residential plots in Vizag with Vizag Yards by Prakruti Avenues. Gated plot ventures in Bhogapuram, Anandapuram and Bobbili, near the new Bhogapuram airport. Book a site visit.',
+  path: '/',
+  keywords: [...keywordClusters.primary, ...keywordClusters.highIntent.slice(0, 3)],
+});
 
 export default function HomePage() {
   const navLinks = [
@@ -31,67 +36,22 @@ export default function HomePage() {
 
   const featuredVentures = ventures.slice(0, 3);
 
-  useEffect(() => {
-    document.title = 'Vizag Yards - Buy Plots in Vizag | Residential Plots in Visakhapatnam';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Buy best residential plots in Vizag. Vizag Yards offers VMRDA approved open plots near Bhogapuram Airport. Premium gated community ventures in Visakhapatnam with modern amenities.');
-    }
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', [...keywordClusters.primary, ...keywordClusters.highIntent.slice(0, 2), 'VMRDA approved plots'].join(', '));
-    }
-  }, []);
-
-  const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://vizagyards.com' },
-  ]);
-
   return (
     <div className="min-h-screen bg-ivory text-ink">
-      <SchemaMarkup schema={realEstateAgentSchema} />
-      <SchemaMarkup schema={localBusinessSchema} />
-      <SchemaMarkup schema={faqSchema} />
-      <SchemaMarkup schema={aggregateOfferSchema} />
-      <SchemaMarkup schema={breadcrumbs} />
+      <SchemaMarkup schema={faqPageSchema(faqs)} />
       <Header navLinks={navLinks} />
 
       {/* Hero Section */}
-      <section className="relative isolate flex min-h-[700px] flex-col items-stretch overflow-hidden bg-navy sm:min-h-[720px] sm:flex-row sm:items-center lg:min-h-[790px]" style={{ backgroundImage: 'url(/images/vizag-hero.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/15" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/45 via-transparent to-black/10" />
-        <div className={`flex w-full flex-1 items-center py-10 sm:flex-none sm:pb-28 sm:pt-20 ${container}`}>
+      <section className="relative isolate flex min-h-[560px] items-center overflow-hidden bg-navy sm:min-h-[640px] lg:min-h-[720px]">
+        <Image src="/images/vizag-hero.png" alt="Entrance gate of a Vizag Yards gated plot community" fill priority sizes="100vw" className="-z-20 object-cover" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/10" />
+        <div className={`w-full py-20 ${container}`}>
           <div className="max-w-3xl">
-            <div className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold-light sm:text-xs">
-              <span className="h-px w-10 bg-gold-light" />
-              <Sparkles className="h-3.5 w-3.5" />
-              Thoughtfully chosen plots in Vizag
-            </div>
-            <h1 className="mb-6 max-w-3xl text-[2.6rem] font-medium leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <Eyebrow onDark>Thoughtfully chosen plots in Vizag</Eyebrow>
+            <h1 className="mb-10 text-[2.6rem] leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
               Connecting you to the <Accent onDark>home you love.</Accent>
             </h1>
-            <p className="mb-9 max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
-              Discover well-planned communities, considered locations and a more confident way to own land in Visakhapatnam.
-            </p>
-            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
-              <ButtonLink href="/ventures" variant="light">Explore our ventures</ButtonLink>
-              <ButtonLink href="/contact" variant="textLight" arrow={false}>Speak with an advisor</ButtonLink>
-            </div>
-          </div>
-        </div>
-        <div className="relative mt-auto border-t border-white/15 bg-ink/70 backdrop-blur-md sm:absolute sm:bottom-0 sm:left-0 sm:right-0">
-          <div className={`grid grid-cols-2 divide-x divide-white/15 lg:grid-cols-4 ${container}`}>
-            {[
-              ['Curated locations', 'Across Vizag & Bhogapuram'],
-              ['Thoughtful planning', 'Communities built to last'],
-              ['Local expertise', 'Guidance at every step'],
-              ['A confident start', 'Clear, personal support'],
-            ].map(([title, detail]) => (
-              <div key={title} className="px-3 py-5 first:pl-0 sm:px-6 sm:py-6 lg:px-8">
-                <p className="font-serif text-base text-white sm:text-lg">{title}</p>
-                <p className="mt-1 text-[10px] leading-4 text-white/60 sm:text-xs">{detail}</p>
-              </div>
-            ))}
+            <ButtonLink href="/ventures" variant="light">Explore our ventures</ButtonLink>
           </div>
         </div>
       </section>
@@ -114,7 +74,7 @@ export default function HomePage() {
           ].map((feature, idx) => (
             <div key={feature.title} className={`group px-6 py-8 sm:py-10 ${idx > 0 ? 'lg:border-l lg:border-gold-line/50' : ''} ${idx % 2 === 1 ? 'sm:border-l sm:border-gold-line/50' : ''}`}>
               <feature.icon className="mb-6 h-7 w-7 text-gold transition-transform duration-500 group-hover:-translate-y-1" strokeWidth={1.25} />
-              <h3 className="mb-2 font-serif text-xl text-ink">{feature.title}</h3>
+              <h3 className="mb-2 text-xl text-ink">{feature.title}</h3>
               <p className="text-sm leading-6 text-ink/70">{feature.desc}</p>
             </div>
           ))}
@@ -192,7 +152,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="mb-2 font-serif text-2xl text-ink transition group-hover:text-navy">{prop.name}</h3>
+                <h3 className="mb-2 text-2xl text-ink transition group-hover:text-navy">{prop.name}</h3>
 
                 <div className="mb-5 flex items-center gap-2 text-sm text-ink/70">
                   <MapPin className="h-4 w-4 shrink-0 text-gold" />
@@ -283,7 +243,7 @@ export default function HomePage() {
           ].map((step) => (
             <div key={step.num} className="relative border-t border-gold-line pt-8">
               <span className="mb-6 block font-serif text-5xl font-light italic text-gold">{step.num}</span>
-              <h3 className="mb-3 font-serif text-2xl text-ink">{step.title}</h3>
+              <h3 className="mb-3 text-2xl text-ink">{step.title}</h3>
               <p className="max-w-sm text-sm leading-6 text-ink/70">{step.desc}</p>
             </div>
           ))}
@@ -328,32 +288,7 @@ export default function HomePage() {
           />
 
           <div className="divide-y divide-gold-line/50 border-y border-gold-line/50">
-            {[
-              {
-                question: 'How do I start searching for properties?',
-                answer: 'Simply use our search bar to filter properties by location, type, and budget. Browse through our listings or contact our team for personalized recommendations.'
-              },
-              {
-                question: 'Are all properties verified?',
-                answer: 'Yes! Every property on Vizag Yards is thoroughly verified by our team. We check documentation, take photos, and ensure all information is accurate and up-to-date.'
-              },
-              {
-                question: 'What is your refund policy?',
-                answer: 'We offer a satisfaction guarantee. If you\'re not satisfied with our service within 30 days, we provide a full refund. No questions asked.'
-              },
-              {
-                question: 'How quickly can I schedule a property tour?',
-                answer: 'Most properties can be scheduled within 24-48 hours. For urgent inquiries, our team can arrange same-day tours. Use our "Schedule Tour" button or contact us directly.'
-              },
-              {
-                question: 'Do you provide investment consultation?',
-                answer: 'Yes! Our investment specialists can help you analyze properties and create investment strategies. Book a consultation through our Contact page.'
-              },
-              {
-                question: 'Is my personal information safe?',
-                answer: 'Absolutely. We use bank-level encryption and comply with all data protection regulations. Your privacy is our top priority.'
-              }
-            ].map((faq) => (
+            {faqs.map((faq) => (
               <details key={faq.question} className="group cursor-pointer py-5 sm:py-6">
                 <summary className="flex list-none items-center justify-between gap-4 font-serif text-lg text-ink marker:hidden sm:text-xl">
                   {faq.question}

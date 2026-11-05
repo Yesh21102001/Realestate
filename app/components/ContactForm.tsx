@@ -59,7 +59,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mx-4 w-[calc(100%-2rem)] max-w-md bg-ivory shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gold-line/50 p-6">
-          <h2 className="text-3xl font-medium text-ink">Contact us</h2>
+          <h2 className="text-3xl text-ink">Contact us</h2>
           <button
             onClick={onClose}
             className="text-ink/55 transition hover:text-gold"
@@ -73,7 +73,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
           {submitted ? (
             <div className="text-center py-8">
               <div className="mb-4 font-serif text-5xl text-gold">✓</div>
-              <h3 className="text-lg font-bold text-ink mb-2">Message Sent!</h3>
+              <h3 className="text-lg text-ink mb-2">Message Sent!</h3>
               <p className="text-ink/70">Thank you for contacting us. We’ll get back to you soon.</p>
             </div>
           ) : (

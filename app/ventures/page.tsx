@@ -1,16 +1,21 @@
-'use client';
-
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import type { Metadata } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import { ventures } from '../data/ventures';
 import SchemaMarkup from '../components/SchemaMarkup';
 import { Section } from '../components/ui';
-import { keywordClusters } from '../lib/seo';
+import { breadcrumbSchema, keywordClusters, pageMetadata, venturesListSchema } from '../lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Plots & Ventures for Sale in Vizag',
+  description: `Explore ${ventures.length} residential plot ventures by Vizag Yards: ${ventures.map((v) => `${v.name} (${v.loc.split(',')[0]})`).join(', ')}. Prices, amenities and site details in one place.`,
+  path: '/ventures',
+  keywords: [...keywordClusters.venture, ...keywordClusters.locationBased.slice(0, 3)],
+});
 
 export default function VenturesPage() {
   const navLinks = [
@@ -21,43 +26,10 @@ export default function VenturesPage() {
     { label: 'Privacy Policy', href: '/privacy' }
   ];
 
-  useEffect(() => {
-    document.title = 'All Plots & Ventures in Vizag | Residential Plot Projects | Vizag Yards';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore all residential ventures in Vizag. Browse approved open plots, gated communities, and premium projects in Visakhapatnam by Vizag Yards including Radian Silicon Park and Nexus Valley.');
-    }
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', [...keywordClusters.venture, ...keywordClusters.locationBased.slice(0, 3)].join(', '));
-    }
-  }, []);
-
-  const collectiveListingSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'All Properties & Ventures',
-    description: 'Explore premium residential properties and ventures in Visakhapatnam',
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: ventures.map((venture, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        item: {
-          '@type': 'Residence',
-          name: venture.name,
-          url: `https://vizagyards.com/ventures/${venture.slug}`,
-          image: `https://vizagyards.com${venture.image}`,
-          description: venture.description,
-          areaServed: venture.loc,
-        },
-      })),
-    },
-  };
-
   return (
     <div className="min-h-screen bg-ivory">
-      <SchemaMarkup schema={collectiveListingSchema} />
+      <SchemaMarkup schema={venturesListSchema(ventures)} />
+      <SchemaMarkup schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Ventures', path: '/ventures' }])} />
       <Header navLinks={navLinks} />
 
       <PageHero
@@ -93,7 +65,7 @@ export default function VenturesPage() {
                 </div>
 
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <h2 className="mb-2 font-serif text-2xl text-ink transition group-hover:text-navy">{venture.name}</h2>
+                  <h2 className="mb-2 text-2xl text-ink transition group-hover:text-navy">{venture.name}</h2>
 
                   <div className="mb-5 flex items-center gap-2 text-sm text-ink/70">
                     <MapPin className="h-4 w-4 shrink-0 text-gold" />
